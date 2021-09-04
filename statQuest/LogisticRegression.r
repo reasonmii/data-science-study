@@ -1,4 +1,3 @@
-
 url <- "http://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data"
 data <- read.csv(url, header=FALSE)
 head(data)
