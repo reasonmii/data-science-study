@@ -1,4 +1,3 @@
-
 install.packages("glmnet")
 library(glmnet)
 
@@ -103,25 +102,133 @@ alpha0.fit <- cv.glmnet(x.train, y.train, type.measure="mse", alpha=0, family="g
 #
 # alpha0.fit : It is a fitted model
 #
-# s=alpha0.fit$lambda.1se : s, which Josh thinks stands for "size", as in "the size of the penalty"
-#                           is set to one of the optimal values for λ stored in alpha0.fit
-#                           In this example, we are setting s to lambda.1se
-#                           lambda.1se is the value for λ, stored in alpha0.fit,
-#                           that resulted in the simplest model (i.e. the model with the fewest non-zero parameters)
-#                           and was within 1 standard error of the λ that had the smallest sum
+# s=alpha0.fit$lambda.1se
+# s, which Josh thinks stands for "size", as in "the size of the penalty"
+# is set to one of the optimal values for λ stored in alpha0.fit
+# In this example, we are setting s to lambda.1se
+# lambda.1se is the value for λ, stored in alpha0.fit,
+# that resulted in the simplest model (i.e. the model with the fewest non-zero parameters)
+# and was within 1 standard error of the λ that had the smallest sum
+#
+# NOTE : Alternatively, we can set s to lambda.min, which would be the λ that resulted in the smallest sum
+# However, in this example, we will use lambda.1se
+# because, in a statistical sense, it is indistinguishable from lambda.min,
+# but it results in a model with fewer parameters
+#
+# Wait a minute! I thought only Lasso and Elastic-Net Regression could eliminate parameters
+# What's going on?
+# Since we will compare Ridge to Lasso and Elastic-Net Regression,
+# we will use lambda.1se for all three cases to be consistent
 alpha0.predicted <- predict(alpha0.fit, s=alpha0.fit$lambda.1se, newx=x.test)
 
+# Calculate the mean squared error of the difference between the true values,
+# stored in y.test, and the predicted values, stored in alpha0.predicted
+mean((y.test - alpha0.predicted)^2)
 
 
+# ======================================================
+# Lasso Regression
+# ======================================================
+
+# Just like before, call cv.glmnet() to fit a Linear Regression using 10-Fold Cross Validation to determine optimal values for λ
+# Only this time we set alpha to 1
+alpha1.fit <- cv.glmnet(x.train, y.train, type.measure="mse", alpha=1, family="gaussian")
+
+# Call the predict() function
+alpha1.predicted <- predict(alpha1.fit, s=alpha1.fit$lambda.1se, newx=x.test)
+
+# Calculate the mean squared error
+mean((y.test - alpha1.predicted)^2)
+
+# 1.18 is way smaller than 14.88
+# So, Lasso Regression is much better than this data than Ridge Regression
 
 
+# ======================================================
+# Elastic-Net Regression
+# ======================================================
+
+# Call cv.glmnet() todetermine optimal values for λ
+alpha0.5.fit <- cv.glmnet(x.train, y.train, type.measure="mse", alpha=0.5, family="gaussian")
+
+# Call the predict() function
+alpha0.5.predicted <- predict(alpha0.5.fit, s=alpha0.5.fit$lambda.1se, newx=x.test)
+
+# Calculate the mean squared error
+mean((y.test - alpha0.5.predicted)^2)
+
+# 1.23 is slightly larger than the 1.18, we got with Lasso Regression
+# So, so far, Lasso wins
+# But to really know if Lasso wins, we need to try a lot of different values for alpha
 
 
+# ======================================================
+# Try a bunch of values for alpha
+# ======================================================
 
+# We'll start by making an empty list called list.of.fits
+# that will store a bunch of Elastic-Net Regression fits
+list.of.fits <- list()
 
+# Then use a for loop to try different values for alpha
+for (i in 0:10) {
+  
+  # First, paste together a name for the Elastic-Net fit that we are going to create
+  # ex) when i=0, then fit.name will be alpha0 (0/10)
+  # ex) when i=1, then fit.name will be alpha0.1 (1/10)
+  fit.name <- paste0("alpha", i/10)
+  
+  # Create the Elastic-Net fit using the cv.glmnet() function
+  # When i=0, then alpha will be 0 and result in Ridge Regression
+  # When i=1, then alpha will be 0.1
+  # When i=10, then alpha will be 1 and result in Lasso Regression
+  # Each fit will be stored in list.of.fits under the name we stored in fit.name
+  list.of.fits[[fit.name]] <-
+    cv.glmnet(x.train, y.train, type.measure="mse", alpha=i/10,
+              family="gaussian")
+}
 
+# Now we are ready to calculate the mean squared errors for each fit with the Testing dataset
 
+# Start by creating an empty data.frame, called results,
+# that will store the mean squared errors and a few other things
+results <- data.frame()
 
+# Use another for loop to predict the values using the Testing dataset
+# and to calculate the mean squared errors
+for (i in 0:10) {
+  
+  # Create a variable caalled fit.name that contanis the name of the Elastic-Net Regression fit
+  fit.name <- paste0("alpha", i/10)
+  
+  # Use the list.of.fits list and fit.name to pass a specific fit to the predict() function
+  predicted <-
+    predict(list.of.fits[[fit.name]],
+            s=list.of.fits[[fit.name]]$lambda.1se,
+            newx=x.test)
+  
+  # Calculate the mean squared error
+  mse <- mean((y.test - predicted)^2)
+  
+  # Store the value for alpha, the mean squared error
+  # and the name of the fit in a temporary data.frame called temp
+  temp <- data.frame(alpha=i/10, mse=mse, fit.name=fit.name)
+  
+  # Use the rbind() function to append temp to bottom row of the results data.frame
+  results <- rbind(results, temp)
+}
 
-
-
+# Print out the result
+#
+# The first column has the values for alpha, ranging from 0 to 1
+#
+# The second column has the mean squared errors
+# NOTE : These are slightly different from what we got before,
+#        because the parameter values, prior to regularization and optimization are randomly initialized
+#        ★ Thus, this is another good reason to use set.seed() to ensure consistent results
+#
+# In the last column, we have the name of the fit
+#
+# The fit where the alpha=1, is still the best,
+# so Lasso Regression is the best method to use with this data
+results
