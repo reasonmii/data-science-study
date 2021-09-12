@@ -12,8 +12,6 @@ summary(mouse.regression)
 abline(mouse.regression, col="blue")
 ```
 
-# Summary Interpretation
-
 **Call**
 <br/>The first line just prints out the original call to the lm() function
 
