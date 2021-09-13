@@ -9,7 +9,7 @@ conda update --all
 conda install scikit-learn=0.22.1
 conda install -c conda-forge xgboost
 
-To draw the tree
+★ To draw the tree:
 conda install graphviz python-graphviz
 '''
 
@@ -482,8 +482,6 @@ total_gain = the total gain across all splits the feature is used in
 total_cover = the total coverage across all splits the feature is used in
 
 NOTE : Since we only built one tree, 'gain = total_gain' and 'cover = total_cover'
-
-★ conda install graphviz python-graphviz
 '''
 
 bst = clf_xgb.get_booster()
