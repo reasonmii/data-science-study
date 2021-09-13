@@ -516,9 +516,9 @@ graph_data.view(filename='xgboost_tree_customer_churn')
 How to interpret the XGBoost Tree
 
 The variable (column name) and the threshold for splitting the observations
-For example, inthe tree's root, we use Contract_Month-to-month to split the observations
-All observations with Contract_Month-to-month < 1 go to the left
-and all observations with Contract_Month-to-month >= go to the right
+For example, in the tree's root, we use Tech_Support_No to split the observations
+All observations with Tech_Support_No < 0.5 go to the left
+and all observations with Contract_Month-to-month >= 0.5 go to the right
 
 Each branch either says yes or no and some also say missing
 - yes and no refer to whether the threshold in the node above it is true or not
