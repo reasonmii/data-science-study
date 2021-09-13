@@ -505,12 +505,12 @@ xgb.to_graphviz(clf_xgb, num_trees=0, size="10,10",
                 leaf_node_params=leaf_params)
 
 # If you want to save the figure
-# graph_daga = xgb.to_graphviz(clf_xgb, num_trees=0, size="10,10",
-#                              condition_node_params=node_params,
-#                              leaf_node_arams=leaf_params)
-#
+graph_data = xgb.to_graphviz(clf_xgb, num_trees=0, size="10,10",
+                              condition_node_params=node_params,
+                              leaf_node_params=leaf_params)
+
 # Save as PDF
-# graph_data.view(filename='xgboost_tree_customer_churn')
+graph_data.view(filename='xgboost_tree_customer_churn')
 
 '''
 How to interpret the XGBoost Tree
