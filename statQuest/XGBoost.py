@@ -502,7 +502,7 @@ leaf_params = {'shape': 'box',
 # xgb.to_graphviz(clf_xgb, num_trees=0, size="10,10")
 xgb.to_graphviz(clf_xgb, num_trees=0, size="10,10",
                 condition_node_params=node_params,
-                leaf_node_arams=leaf_params)
+                leaf_node_params=leaf_params)
 
 # If you want to save the figure
 # graph_daga = xgb.to_graphviz(clf_xgb, num_trees=0, size="10,10",
