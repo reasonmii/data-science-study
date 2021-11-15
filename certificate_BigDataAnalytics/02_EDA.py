@@ -314,10 +314,131 @@ data_group_mean
 
 # 집단 별로 분석가가 설정한 특정 값으로 대체
 fill_values = {1: 1000, 2:2000}
-fill_func = lambda d: d.fillna(fill_vlaues[d.name])
+fill_func = lambda d: d.fillna(fill_values[d.name])
+
+data_group_value = data.groupby('industry').apply(fill_func)
+data_group_value
+
+# 변수 별로 다른 대체방법을 한 번에 적용
+# salary : 보간법 (interpolate)
+# ★ 보간법 : missing data 전 값과 다음 값 사이의 중간값
+# sales : 평균
+# roe : missing
+missing_fill_val = {'salary': data.salary.interpolate(),
+                    'sales': data.sales.mean(),
+                    'roe': 'missing'}
+
+print(missing_fill_val)
+
+data_multi = data.fillna(missing_fill_val)
+data_multi
 
 
+# =================================================================
+# 6. 데이터정제 실전과제
+# =================================================================
 
+data = pd.read_csv('house_raw.csv')
 
+data.head()
+data.describe()
+data.info()
 
+data.hist(bins=50, figsize=(20,15))
 
+# 1) 선형회귀 적용 (정제 전 데이터) =================================
+X = data[data.columns[0:5]]
+y = data[["house_value"]]
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
+
+from sklearn.preprocessing import MinMaxScaler
+scaler_minmax = MinMaxScaler()
+scaler_minmax.fit(X_train)
+X_scaled_minmax_train = scaler_minmax.transform(X_train)
+X_scaled_minmax_test = scaler_minmax.transform(X_test)
+
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+model.fit(X_scaled_minmax_train, y_train)
+
+pred_train = model.predict(X_scaled_minmax_train)
+model.score(X_scaled_minmax_train, y_train)
+# 0.5463729131516732
+
+pred_test = model.predict(X_scaled_minmax_test)
+model.score(X_scaled_minmax_test, y_test)
+# -2.8220648010161544
+# -> 음수가 나온 이유 : 이상치 때문
+
+# 2) 데이터 정제를 위한 세부 검토 ===================================
+
+# bedrooms : 0.6 미만 데이터
+data_bedroom = data[data['bedrooms'] < 0.6]
+data_bedroom['bedrooms'].hist(bins=50, figsize=(20,15))
+
+# bedrooms : 0.6 이상 데이터
+# -> 14개만 있음 (제거해도 큰 문제가 없을 것으로 보임)
+data_bedroom2 = data[data['bedrooms'] >= 0.6]
+print(data_bedroom2['bedrooms'].value_counts())
+data_bedroom2
+
+# households : 10 미만 데이터
+data_households = data[data['households'] < 10]
+data_households['households'].hist(bins=100, figsize=(20,15))
+
+# households : 10 이상 데이터
+# -> 22개만 있음 (제거해도 큰 문제가 없을 것으로 보임)
+data_households2 = data[data['households'] >= 10]
+print(data_households2['households'].value_counts())
+data_households2
+
+# rooms : 20개 미만
+data_room = data[data['rooms'] < 20]
+data_room['rooms'].hist(bins=100, figsize=(20,15))
+
+# rooms : 20개 이상
+# -> 적은 데이터는 않지만 전체 데이터 수가 워낙 커서 제거해도 괜찮을 것으로 보임
+data_room2 = data[data['rooms'] >= 20]
+print(data_room2['rooms'].value_counts())
+data_room2
+
+# 3) 정제 데이터셋 생성 ============================================
+
+new_data = data[(data['bedrooms'] < 0.5) &
+                (data['households'] < 7) &
+                (data['rooms'] < 12)]
+
+new_data.describe()
+new_data.hist(bins=50, figsize=(20,15))
+
+# 4) 선형회귀 적용 (정제 후 데이터) ================================
+
+X = new_data[new_data.columns[0:5]]
+y = new_data[['house_value']]
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state = 42)
+
+from sklearn.preprocessing import MinMaxScaler
+scaler_minmax = MinMaxScaler()
+
+scaler_minmax.fit(X_train)
+X_scaled_minmax_train = scaler_minmax.transform(X_train)
+X_scaled_minmax_test = scaler_minmax.transform(X_test)
+
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+model.fit(X_scaled_minmax_train, y_train)
+
+pred_train = model.predict(X_scaled_minmax_train)
+print("훈련데이터 정확도 : ", model.score(X_scaled_minmax_train, y_train))
+# 훈련데이터 정확도 :  0.5706921210926263
+
+pred_test = model.predict(X_scaled_minmax_test)
+print("검증데이터 정확도 : ", model.score(X_scaled_minmax_test, y_test))
+# 검증데이터 정확도 :  0.5826083517811866
+
+# 정제된 최종 테이블을 CSV 파일로 저장
+new_data.to_csv('house_price.csv', index=False)
