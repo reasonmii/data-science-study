@@ -68,12 +68,13 @@ print(y_test.mean())
 # 4. 정규화
 # =================================================================
 
-# train data 정규화 ===============================================
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
 
 scaler_minmax = MinMaxScaler()
 scaler_standard = StandardScaler()
+
+# train data 정규화 ===============================================
 
 scaler_minmax.fit(X_train)  # 모델 정규화 훈련
 X_scaled_minmax_train = scaler_minmax.transform(X_train)
