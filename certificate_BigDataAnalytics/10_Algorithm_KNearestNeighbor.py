@@ -58,7 +58,6 @@ scaler.fit(X_train)
 X_scaled_train = scaler.transform(X_train)
 X_scaled_test = scaler.transform(X_test)
 
-
 # KNeighborsClassifier ============================================
 
 from sklearn.neighbors import KNeighborsClassifier
@@ -108,7 +107,6 @@ print("분류예측 레포트:\n", cfreport_test)
 #    macro avg       0.95      0.95      0.95       171
 # weighted avg       0.95      0.95      0.95       171
 
-
 # Grid Search =====================================================
 
 from sklearn.model_selection import GridSearchCV
@@ -123,7 +121,6 @@ print("Test set Score: {:.4f}".format(grid_search.score(X_scaled_test, y_test)))
 # Best Parameter: {'n_neighbors': 3}
 # Best Score: 0.9824
 # Test set Score: 0.9532
-
 
 # Random Search ===================================================
 
