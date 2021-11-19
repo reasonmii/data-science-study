@@ -28,6 +28,7 @@
 # 단점 : 대규모 데이터에는 느린 학습속도
 # 1) 분류 : SVC (Support Vector Classification)
 # 2) 회귀 : SVR (Support Vector Regression)
+#           - kernel에 민감 (5가지 중 잘 맞는 것 선택이 중요)
 #
 # 주요 하이퍼파리미터
 # - C : default = 1
@@ -154,3 +155,78 @@ print("Test set Score: {:.4f}".format(random_search.score(X_scaled_test, y_test)
 # Best Parameter: {'C': 5, 'gamma': 91, 'kernel': 'linear'}
 # Best Score: 0.9765
 # Test set Score: 0.9591
+
+
+# =================================================================
+# Regression
+# =================================================================
+
+data = pd.read_csv('house_price.csv', encoding='utf-8')
+
+data.info()
+data.describe()
+data.head()
+
+X = data[data.columns[1:5]]
+y = data[['house_value']]
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
+
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+scaler.fit(X_train)
+X_scaled_train = scaler.transform(X_train)
+X_scaled_test = scaler.transform(X_test)
+
+from sklearn.svm import SVR
+model = SVR(kernel='poly')
+model.fit(X_scaled_train, y_train)
+pred_train = model.predict(X_scaled_train)
+model.score(X_scaled_train, y_train)
+# 0.45177025582209707
+
+pred_test = model.predict(X_scaled_test)
+model.score(X_scaled_test, y_test)
+# 0.45177025582209707
+
+# RMSE (Root Mean Squared Error)
+from sklearn.metrics import mean_squared_error
+MSE_train = mean_squared_error(y_train, pred_train)
+MSE_test = mean_squared_error(y_test, pred_test)
+print("훈련데이터 RSME: ", np.sqrt(MSE_train))
+print("테스트데이터 RMSE: ", np.sqrt(MSE_test))
+# 훈련데이터 RSME:  70669.55248802518
+# 테스트데이터 RMSE:  69600.08964461758
+
+# Grid Search
+from sklearn.model_selection import GridSearchCV
+param_grid = {'kernel': ['poly'],
+              'C': [0.01, 0.1, 1, 10],
+              'gamma': [0.01, 0.1, 1, 10]}
+grid_search = GridSearchCV(SVR(kernel='poly'), param_grid, cv=5)
+grid_search.fit(X_scaled_train, y_train)
+print("Best Parameter: {}".format(grid_search.best_params_))
+print("Best Score: {:.4f}".format(grid_search.best_score_))
+print("Test set Score: {:.4f}".format(grid_search.score(X_scaled_test, y_test)))
+# Best Parameter: {'C': 10, 'gamma': 10, 'kernel': 'poly'}
+# Best Score: 0.4888
+# Test set Score: 0.5092
+
+# Random Search
+from sklearn.model_selection import RandomizedSearchCV
+from scipy.stats import randint
+param_distribs = {'kernel': ['poly'],
+                  'C': randint(low=0.01, high=10),
+                  'gamma': randint(low=0.01, high=10)}
+random_search = RandomizedSearchCV(SVR(kernel='poly'),
+                                   param_distributions=param_distribs,
+                                   n_iter=20,
+                                   cv=5)
+random_search.fit(X_scaled_train, y_train)
+print("Best Parameter: {}".format(random_search.best_params_))
+print("Best Score: {:.4f}".format(random_search.best_score_))
+print("Test set Score: {:.4f}".format(random_search.score(X_scaled_test, y_test)))
+# Best Parameter: {'C': 7, 'gamma': 9, 'kernel': 'poly'}
+# Best Score: 0.4682
+# Test set Score: 0.4922
