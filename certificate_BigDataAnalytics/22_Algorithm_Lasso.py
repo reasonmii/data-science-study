@@ -82,7 +82,7 @@ random_search = RandomizedSearchCV(Lasso(),
 random_search.fit(X_scaled_train, y_train)
 print("Best Parameter: {}".format(random_search.best_params_))
 print("Best Score: {:.4f}".format(random_search.best_score_))
-# print("Test set Score: {:.4f}".format(random_search.score(X_scaled_test, y_test)))
+print("Test set Score: {:.4f}".format(random_search.score(X_scaled_test, y_test)))
 # Best Parameter: {'alpha': 1}
 # Best Score: 0.5452
 # Test set Score: 0.5627
