@@ -3,6 +3,10 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+print(dir(np))
+print(dir(pd))
+print(dir(plt))
+
 data = pd.read_csv('EX_CEOSalary.csv', encoding='utf-8')
 
 data.info()
