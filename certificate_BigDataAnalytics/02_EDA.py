@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 
 print(dir(np))
 print(dir(pd))
+print(dir(pd.DataFrame))
 print(dir(plt))
 
 data = pd.read_csv('EX_CEOSalary.csv', encoding='utf-8')
