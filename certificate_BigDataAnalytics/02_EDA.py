@@ -9,6 +9,13 @@ print(dir(pd.DataFrame))
 print(help(pd.DataFrame.fillna))
 print(dir(plt))
 
+import sklearn
+print(sklearn.__all__)
+
+import sklearn.preprocessing
+print(sklearn.preprocessing.__all__)
+print(help(sklearn.preprocessing.MinMaxScaler))
+
 data = pd.read_csv('EX_CEOSalary.csv', encoding='utf-8')
 
 data.info()
