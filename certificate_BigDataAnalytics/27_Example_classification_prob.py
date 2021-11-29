@@ -52,10 +52,10 @@ from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier
 
 X_tr, X_val, y_tr, y_val = train_test_split(X_train,
-																						y_train['gender'],
-																						stratify=y_train['gender'],
-																						test_size=0.3,
-																						random_state=42)
+					    y_train['gender'],
+					    stratify=y_train['gender'],
+					    test_size=0.3,
+				    	    random_state=42)
 
 model = LogisticRegression()
 model.fit(X_tr, y_tr)
