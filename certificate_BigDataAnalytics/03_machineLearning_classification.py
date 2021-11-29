@@ -100,7 +100,7 @@ from sklearn.preprocessing import minmax_scale
 a['mtcars'] = minmax_scale(a['mtcars'])
 
 # 정규화 후 0.5보다 큰 데이터 개수
-print(len(a['mtcars'] > 0.5))  # 데이터 수
+print(data[len(a['mtcars'] > 0.5]))  # 데이터 수
 print(sum(a['mtcars'] > 0.5))  # True 출력 개수
 
 
