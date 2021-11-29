@@ -149,7 +149,8 @@ best_mse = (-1) * rf_search.best_score_
 best_rmse = np.sqrt(best_mse)
 
 print("Best score : {}, Best params : {}".format(round(best_rmse, 4), rf_search.best_params_))
-
+# Best score : 4717.9245,
+# Best params : {'max_depth': 5, 'min_samples_leaf': 5, 'min_samples_split': 2, 'n_estimators': 200, 'random_state': 42}
 
 gbr_params = {
     'learning_rate' : [0.01, 0.05, 0.1],
@@ -166,19 +167,23 @@ best_mse = (-1) * gbr_search.best_score_
 best_rmse = np.sqrt(best_mse)
 
 print("Best score : {}, Best params : {}".format(round(best_rmse, 4), gbr_search.best_params_))
+# Best score : 4643.9201,
+# Best params : {'learning_rate': 0.05, 'max_depth': 3, 'min_samples_leaf': 4, 'min_samples_split': 2, 'n_estimators': 80, 'random_state': 42}
 
 
 # Test set ===================================================================
 
-rf_final = RandomForestRegressor(**rf_search.best_params)
+rf_final = RandomForestRegressor(**rf_search.best_params_)
 rf_final.fit(X_tr, y_tr)
 rf_pred = rf_final.predict(X_val)
 rf_rmse = np.sqrt(mean_squared_error(y_val, rf_pred))
 print("RMSE of RandomForest : %.4f" % (rf_rmse))
+# RMSE of RandomForest : 4322.2698
 
-gbr_final = GradientBoostingRegressor(**gbr_search.best_params)
+gbr_final = GradientBoostingRegressor(**gbr_search.best_params_)
 gbr_final.fit(X_tr, y_tr)
 gbr_pred = gbr_final.predict(X_val)
 gbr_rmse = np.sqrt(mean_squared_error(y_val, gbr_pred))
 print("RMSE of GBR : %.4f" % (gbr_rmse))
+# RMSE of GBR : 4328.3309
 
