@@ -95,6 +95,10 @@ pd.DataFrame(X_scaled_minmax_test).describe()
 X_scaled_standard_test = scaler_minmax.transform(X_test)
 pd.DataFrame(X_scaled_standard_test).describe()
 
+# 특정 컬럼 정규화 ================================================
+from sklearn.preprocessing import minmax_scale
+data['Normal_Nucleoli'] = minmax_scale(data['Normal_Nucleoli'])
+
 
 # =================================================================
 # 5. 모델 학습
