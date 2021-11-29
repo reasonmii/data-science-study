@@ -94,6 +94,14 @@ pd.DataFrame(X_scaled_standard_train).describe()
 pd.DataFrame(X_scaled_minmax_test).describe()
 pd.DataFrame(X_scaled_standard_test).describe()
 
+# 특정 컬럼 정규화 ================================================
+from sklearn.preprocessing import minmax_scale
+a['mtcars'] = minmax_scale(a['mtcars'])
+
+# 정규화 후 0.5보다 큰 데이터 개수
+print(data[len(a['mtcars'] > 0.5]))  # 데이터 수
+print(sum(a['mtcars'] > 0.5))  # True 출력 개수
+
 
 # =================================================================
 # 5. 모델 학습
