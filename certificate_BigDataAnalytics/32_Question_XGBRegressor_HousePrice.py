@@ -38,6 +38,7 @@ print(X_val.isnull().sum().sort_values(ascending=False)[:20])
 X_train = X_train.select_dtypes(exclude=['object'])
 X_val = X_val.select_dtypes(exclude=['object'])
 
+# colsample_bytree : Subsample ratio of columns when constructing each tree
 from xgboost import XGBRegressor
 model = XGBRegressor(n_estimator=100, max_depth=5, colsample_bytree=0.9)
 model.fit(X_train, y_train['SalePrice'])
