@@ -97,7 +97,11 @@ pd.DataFrame(X_scaled_standard_test).describe()
 
 # 특정 컬럼 정규화 ================================================
 from sklearn.preprocessing import minmax_scale
-data['Normal_Nucleoli'] = minmax_scale(data['Normal_Nucleoli'])
+a['mtcars'] = minmax_scale(a['mtcars'])
+
+# 정규화 후 0.5보다 큰 데이터 개수
+print(len(a['mtcars'] > 0.5))  # 데이터 수
+print(sum(a['mtcars'] > 0.5))  # True 출력 개수
 
 
 # =================================================================
