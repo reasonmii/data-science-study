@@ -128,7 +128,10 @@ print("Train : %.4f - Val : %.4f" % (model.score(X_tr, y_tr), model.score(X_val,
 
 X_test.info()
 
-test['result'] = model.predict(X_test)
+test['count'] = model.predict(X_test)
+test.head()
+
+test = test[['datetime', 'count']]
 test.head()
 
 test.to_csv('bike_sharing_test_rst.csv', index=False)
