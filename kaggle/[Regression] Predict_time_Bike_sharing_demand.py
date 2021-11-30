@@ -19,7 +19,6 @@ y = df[['count']]
 
 
 # Datetime ===================================================================
-
 # Type : object -> datetime64
 X['datetime'] = pd.to_datetime(X['datetime'])
 X['year'] = X['datetime'].dt.year
