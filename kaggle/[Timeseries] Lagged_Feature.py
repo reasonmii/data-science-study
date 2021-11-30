@@ -3,7 +3,8 @@
 주어진 데이터(basic2.csv)에서 새로운 컬럼(1일 이전 시차 컬럼)을 만들고,
 Events가 1이면서 Sales가 1000000이하인 조건에 맞는 새로운 컬럼 합을 구하시오
 
-데이터셋 : basic2.csv
+dataset : basic2.csv
+https://www.kaggle.com/agileteam/bigdatacertificationkr/tasks?taskId=6935
 '''
 
 import pandas as pd
