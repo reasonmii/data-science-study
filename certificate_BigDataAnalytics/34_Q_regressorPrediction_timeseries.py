@@ -115,16 +115,21 @@ print("Best RMSE : {}".format(np.sqrt(mse)))
 
 # Final ======================================================================
 
-model = XGBRegressor(n_estimators=200, max_depth=3, colsample_bytree=0.7, random_state=42)
+# ★ objective='count:poisson'
+# - poisson regression for count data, output mean of Poisson distribution
+# - This would prevent the 'negative' output values
+model = XGBRegressor(n_estimators=200, max_depth=3, colsample_bytree=0.7, random_state=42, objective='count:poisson')
 model.fit(X_tr, y_tr)
 print("Train : %.4f - Val : %.4f" % (model.score(X_tr, y_tr), model.score(X_val, y_val)))
-# Train : 0.8580 - Val : 0.8208
+# Train : 0.8352 - Val : 0.8082
 
 
 # Apply to test set ==========================================================
 
+X_test.info()
+
 test['result'] = model.predict(X_test)
 test.head()
 
-test.to_csv('house_price_test_rst.csv', index=False)
+test.to_csv('bike_sharing_test_rst.csv', index=False)
 
