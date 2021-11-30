@@ -6,6 +6,7 @@ age 컬럼의 중복 제거 전과 후의 중앙값 차이를 구하시오
 - 최종 결과값은 절대값으로 출력
 
 dataset : basic1.csv
+https://www.kaggle.com/agileteam/bigdatacertificationkr/tasks?taskId=6934
 '''
 
 import pandas as pd
