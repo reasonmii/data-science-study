@@ -1,4 +1,4 @@
-# 출력을 원하실 경우 print() 함수 활용
+# 출력 원할 경우 print() 함수 활용
 # 예시) print(df.head())
 
 # getcwd(), chdir() 등 작업 폴더 설정 불필요
