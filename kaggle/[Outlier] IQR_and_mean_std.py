@@ -14,6 +14,9 @@ dataset : basic1.csv
 https://www.kaggle.com/agileteam/bigdatacertificationkr/tasks?taskId=6979
 '''
 
+import pandas as pd
+import numpy as np
+
 df = pd.read_csv('../input/bigdatacertificationkr/basic1.csv')
 
 q1 = df['age'].quantile(0.25)
