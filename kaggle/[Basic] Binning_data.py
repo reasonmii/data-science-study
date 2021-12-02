@@ -36,6 +36,3 @@ g2_med = data[data['range'] == 'group2']['age'].median()
 g3_med = data[data['range'] == 'group3']['age'].median()
 
 print(g1_med + g2_med + g3_med)
-© 2021 GitHub, Inc.
-Terms
-Privacy
