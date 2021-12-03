@@ -8,6 +8,9 @@ https://www.kaggle.com/c/bike-sharing-demand/
 Score : 0.44
 '''
 
+import warnings
+warnings.filterwarnings('ignore')
+
 import pandas as pd
 import numpy as np
 
