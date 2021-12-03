@@ -3,6 +3,7 @@ Bike Sharing Demand
 
 dataset : bike_sharing_train.csv
 https://www.kaggle.com/c/bike-sharing-demand/overview
+https://www.kaggle.com/c/bike-sharing-demand/
 
 Score : 0.44
 '''
