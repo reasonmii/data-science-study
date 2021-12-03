@@ -8,6 +8,8 @@ dataset : basic1.csv
 https://www.kaggle.com/agileteam/bigdatacertificationkr/tasks?taskId=6896
 '''
 
+import warnings 
+warnings.filterwarnings('ignore')
 
 import numpy as np
 import pandas as pd
@@ -31,8 +33,10 @@ data.head()
 data['range'] = pd.qcut(data['age'], q=3, labels=['group1', 'group2', 'group3'])
 data['range'].value_counts()
 
-g1_med = data[data['range'] == 'group1']['age'].median()
-g2_med = data[data['range'] == 'group2']['age'].median()
-g3_med = data[data['range'] == 'group3']['age'].median()
+vals = ['group1', 'group2', 'group3']
+tot = 0
 
-print(g1_med + g2_med + g3_med)
+for val in vals:
+    tot += df[df['group'] == val]['age'].median()  
+
+print(tot)
