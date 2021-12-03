@@ -60,6 +60,7 @@ data.skew()
 # 첨도(kurtosis) = 0 : 정규분포와 같은 높이
 # 첨도↑ : 자료가 중심에 몰려 있음
 data.kurtosis()
+data.kurt()
 # salary    58.971229
 # sales     33.115193
 # roe        3.797366
