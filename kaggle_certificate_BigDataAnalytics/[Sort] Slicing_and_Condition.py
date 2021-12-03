@@ -13,10 +13,13 @@ import numpy as np
 
 df = pd.read_csv('basic1.csv')
 
-# age 상위 20개
+# age 상위 20개 : 방법1
 df = df.sort_values('age', ascending=False).reset_index(drop=True)
 df = df[:20]
 print(df)
+
+# age 상위 20개 : 방법2
+df = df.sort_values('age', ascending=False).head(20)
 
 # f1 결측값 : 중앙값으로 채우기
 df['f1'] = df['f1'].fillna(df['f1'].median())
