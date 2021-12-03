@@ -12,6 +12,9 @@ https://www.kaggle.com/agileteam/bigdatacertificationkr/tasks?taskId=6934
 import pandas as pd
 import numpy as np
 
+import warnings
+warnings.filterwarnings('ignore')
+
 df = pd.read_csv('basic1.csv')
 df.head()
 
