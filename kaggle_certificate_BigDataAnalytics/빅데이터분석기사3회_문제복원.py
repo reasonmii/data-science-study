@@ -68,6 +68,7 @@ print(sum(df.loc[2000, :] > m))  # True 개수
 import pandas as pd
 df = pd.read_csv('basic1.csv')
 
+# 문제풀이
 df = df.isnull().sum()
 # id       0
 # age      0
