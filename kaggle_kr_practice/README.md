@@ -1,6 +1,6 @@
 <h3>캐글 코리아 캐글 스터디 커널 커리큘럼</h3>
 https://kaggle-kr.tistory.com/32
-
+</br></br>
 Binary classification : Tabular data
 - 1st level. Titanic: Machine Learning from Disaster
 - 2nd level. Porto Seguro’s Safe Driver Prediction
