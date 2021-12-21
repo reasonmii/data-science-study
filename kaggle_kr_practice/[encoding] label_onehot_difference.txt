@@ -1,0 +1,32 @@
+A machine learning model cannot deal with categorical variables (except for some models such as LightGBM)
+
+● Label encoding
+- Assign each unique category in a categorical variable with an integer
+- No new columns are created
+- How to use? Scikit-Learn LabelEncoder
+
+Problem
+- It gives the categories an arbitrary ordering
+- The value assigned to each of the categories is random
+  and does not reflect any inherent aspect of the category
+- ★ Thus, for more than 2 unique categories, one-hot encoding is the safe option
+
+
+● One-hot encoding
+- Create a new column for each unique category in a categorical variable
+- Each observation recieves a 1 in the column for its corresponding category and a 0 in all other new columns
+- How to use? pandas get_dummies(df)
+
+Problem
+- The number of features (dimensions of the data) can explode with categorical variables with many categories
+- To deal with this, we can perform one-hot encoding followed by "PCA"
+  or other dimensionality reduction methods to reduce the number of dimensions
+  (while still trying to preserve information)
+
+
+※ Which is better?
+- Some models can deal with label encoded categorical variables with no issues
+- But, one-hot encoding is the safest approach because it does not impose arbitrary values to categories   
+- Here is a good Stack Overflow discussion
+  https://datascience.stackexchange.com/questions/9443/when-to-use-one-hot-encoding-vs-labelencoder-vs-dictvectorizor
+
