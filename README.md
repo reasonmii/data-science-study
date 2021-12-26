@@ -15,6 +15,6 @@
 
 Memo
 
-Modeling
+Modeling</br>
 ① Neural Network : overfitting -> ② SVM : learning time too long -> ③ Ensemble ex) bagging(rf), boosting, NN + RF
 
