@@ -10,3 +10,11 @@
 ### LINKS
 
 - Top Research Papers in Data Science [2020] Free download</br>https://roboticsbiz.com/top-research-papers-in-data-science-2020-free-download
+
+---
+
+Memo
+
+NN : overfitting
+-> SVM : learning time too long
+-> Ensemble ex) bagging(rf), boosting, NN + RF
