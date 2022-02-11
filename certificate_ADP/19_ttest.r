@@ -52,3 +52,49 @@ t.test(data, alternative="two.sided", mu=200)
 #   mean of x 
 # 190 
 
+
+
+#=====================================
+# 대응표본 t-검정 : paired sample t-test = matched pair t-test
+# 단일모집단에 대해 두 번의 처리를 가했을 때, 두 개의 처리에 따른 평균 차이 비교
+# 관측값들은 서로 독립적이지 않고 쌍(pair)으로 이루어짐
+#
+# 모수 : 두 개의 모평균 차이 (D)
+# 귀무가설 H0 : 두 모평균 간 차이가 없다 (ux-uy=D=0)
+# 대립가설 H1
+# 1) 두 모평균 간 차이가 있다 (ux-uy=D <> 0) - 양측검정
+# 2) 두 모평균 간 차이가 0보다 크다 (ux-uy=D > 0) - 단측검정
+# 3) 두 모평균 간 차이가 0보다 작다 (ux-uy=D < 0) - 단측검정
+#
+# t.test(x, y, alternative=c("two.sided","less","greater),paired=FALSE,m=0)
+# x : 처리방법이 x일 때의 관측값 (수치형 벡터)
+# y : 처리방법이 y일 때의 관측값 (수치형 벡터)
+# alternative : 양측검정시 "two.sided", 단측검정시 "less", "greater" 입력
+# paired : 대응표본 t-검정을 수행할지에 대한 여부 (★인자값을 TRUE로 지정)
+# m : 검정 시 기준이 되는 값 (default=0)
+#     대응표본 t-검정에서는 모평균의 차이가 0인지를 검정하기 때문에
+#     m 인자는 적지 않아도 됨
+#=====================================
+
+# H0 귀무가설 : 수면영양제를 복용하기 전과 후의 평균 수면시간에는 차이가 없다 (D=0)
+# H1 대립가설 : 수면영양제를 복용하기 전과 후의 평균 수면시간 차이는 0보다 작다 (D<0)
+
+# 10명의 환자에 대해 영양제 복용 전과 후 수면시간 data
+data <- data.frame(before = c(7,3,4,5,2,1,6,6,5,4),
+                   after = c(8,4,5,6,2,3,6,8,6,5))
+
+# 검정통계량(t값) = -4.7434
+# 자유도(df) = 9
+# 유의확률 (p-value) < 0.05
+# -> 대립가설 채택 : 영양제 복용 후 수면시간이 늘었다
+t.test(data$before, data$after, althernative="less", paired=TRUE)
+# Paired t-test
+# 
+# data:  data$before and data$after
+# t = -4.7434, df = 9, p-value = 0.001054
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -1.4769046 -0.5230954
+# sample estimates:
+#   mean of the differences 
+# -1 
