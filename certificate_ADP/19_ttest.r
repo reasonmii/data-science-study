@@ -98,3 +98,84 @@ t.test(data$before, data$after, althernative="less", paired=TRUE)
 # sample estimates:
 #   mean of the differences 
 # -1 
+
+
+
+#===============================================================================================================
+# 독립표본 t-검정 : independent sample t-test
+# 두 개의 독립된 모집단의 평균 비교
+# ex) 성별에 따른 출근 준비시간 차이
+# 1) 두 모집단은 정규성을 만족해야 함
+#    표본의 크기가 충분히 크다면 중심극한정리에 따라 정규성 만족
+# 2) 두 모집단은 서로 독립적이어야 함
+# 3) 두 독립 집단의 모분산이 동일해야 함
+#    -> ★ t-검정 전 등분산 검정을 통해 모분산이 동일한지 반드시 확인 필요
+#
+# 모수 : 서로 독립된 두 모집단의 평군 (u1, u2)
+# 귀무가설 H0 : 두 모평균 간 차이가 없다 (u1=u2)
+# 대립가설 H1
+# 1) 두 모평균 간 차이가 있다 (u1 <> u2) - 양측검정
+# 2) 집단1 모평균이 집단2 모평균보다 크다 (u1 > u2) - 단측검정
+# 3) 집단1 모평균이 집단2 모평균보다 작다 (u1 < u2) - 단측검정
+#
+# 등분산검정
+# 귀무가설 H0 : 두 집단의 분산이 동일하다
+# 대립가설 H1 : 두 집단의 분산이 동일하지 않다
+# var.test(x, y, alternative)
+# var.test(formula, data, alternative)
+# x : 모집단1로부터 측정한 관측값 (수치형 벡터)
+# y : 모집단2로부터 측정한 관측값 (수치형 벡터)
+# formula : 수치형 벡터(종속변수)~집단분류(독립변수)
+#           데이터프레임을 var.test 함수에 적용시킬 때 사용
+# data : 등분산 검정을 수행할 데이터명
+# alternative : 양측검정시 "two.sided", 단측검정시 "less", "greater" 입력
+#
+# t.test(x, y, alternative, var.equal=FALSE)
+# t.test(formula, data, alternative, var.equal=FALSE)
+# x : 모집단1로부터 측정한 관측값 (수치형 벡터)
+# y : 모집단2로부터 측정한 관측값 (수치형 벡터)
+# formula : 수치형 벡터(종속변수)~집단분류(독립변수)
+#           데이터프레임을 var.test 함수에 적용시킬 때 사용
+# data : t-검정을 수행할 데이터명
+# alternative : 양측검정시 "two.sided", 단측검정시 "less", "greater" 입력
+# var.equal : 등분산성을 만족하는지의 여부 (TRUE/FALSE)
+#===============================================================================================================
+
+# H0 귀무가설 : A, B 두 지역에 따른 겨울 낮 최고기온은 차이가 없다 (u1 = u2)
+# H1 대립가설 : A, B 두 지역에 따른 겨울 낮 최고기온은 차이가 있다 (u1 <> u2)
+
+group <- factor(rep(c("A","B"),each=10))          # 집단구분을 위한 변수
+A <- c(-1,0,3,4,1,3,3,1,1,3)                      # A지역의 온도
+B <- c(6,6,8,8,11,11,10,8,8,9)                    # B지역의 온도
+weather <- data.frame(group=group, temp=c(A,B))   # dataFrame 생성
+
+# p-value > 0.05 : 등분산 가정을 만족함
+var.test(temp~group, data=weather)
+# F test to compare two variances
+# 
+# data:  temp by group
+# F = 0.82807, num df = 9, denom df = 9, p-value = 0.7833
+# alternative hypothesis: true ratio of variances is not equal to 1
+# 95 percent confidence interval:
+#   0.2056809 3.3338057
+# sample estimates:
+#   ratio of variances 
+# 0.8280702 
+
+# 검정통계량(t값) = -8.806
+# 자유도(df) = 18
+# 유의확률 (p-value) < 0.05
+# -> 대립가설 채택 :  A, B 두 지역에 따른 겨울 낮 최고기온은 차이가 있다
+t.test(temp~group, data=weather, alternative="two.sided", var.equal=TRUE)
+# Two Sample t-test
+# 
+# data:  temp by group
+# t = -8.806, df = 18, p-value = 6.085e-08
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -8.298481 -5.101519
+# sample estimates:
+#   mean in group A mean in group B 
+# 1.8             8.5 
+
+
