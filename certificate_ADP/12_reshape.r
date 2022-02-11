@@ -18,3 +18,7 @@ aqm <- melt(airquality, id=c("Month","Day"), na.rm=T)
 # 4개의 테이블 생성 : Ozone, Solar.R, Wind, Temp
 # 행 : Day / 열 : Month / 값 : variable
 cast(aqm, Day ~ Month ~ variable)
+
+# id, variable에 대해 Time의 value를 확인할 때
+# 열1 : id / 열2 : variable / 값 : time
+cast(md, id + variable ~ time)
