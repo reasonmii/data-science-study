@@ -11,9 +11,13 @@
 # 논리 and, or : & |
 # 
 # 기초통계
-# 평균 mean(변수)
+# head(data명)
+# head(data명, n)
+# summary(data명)
+# 평균 mean(data$column), mean(변수)
 # 합계 sum(변수)
-# 중앙값 median(변수)
+# 중앙값 median(data$column), median(변수)
+# 분위수 quantile(data$column)
 # 로그 log(변수)
 # 표준편차 sd(변수)
 # 분산 var(변수)
