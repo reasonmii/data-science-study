@@ -23,3 +23,8 @@ test
 # 1     setosa   0.0704
 # 2 versicolor   0.0870
 # 3  virginica   0.0965
+
+# 각 feed 별 weight 평균 계산하기
+ddply(chickwts, ~feed, summarize, groupmean=mean(weight))
+
+
