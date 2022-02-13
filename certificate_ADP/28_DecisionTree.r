@@ -23,19 +23,18 @@ iris.tree <- ctree(Species~., data=train.data)
 plot(iris.tree)
 plot(iris.tree, type="simple")
 
-# Evaluate
+# Evaluate : Train
 table(predict(iris.tree), train.data$Species)
 #             setosa versicolor virginica
 # setosa         20          0         0
 # versicolor      0         14         1
 # virginica       0          0        13
 
-# Test
+# Evaluate : Test
 test.pre <- predict(iris.tree, newdata=test.data)
 table(test.pre, test.data$Species)
 # test.pre     setosa versicolor virginica
 # setosa         24          0         0
 # versicolor      6         34         3
 # virginica       0          2        33
-
 
