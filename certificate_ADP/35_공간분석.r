@@ -106,3 +106,65 @@ g7 <- gvisGeoChart(quakes, "latlong", "depth", "mag",
                                 backgroundColor="lightblue"))
 plot(g7)
 
+
+# 3. 데이터 읽기 -----------------------------------------------------------------------------------------------
+
+### 1. 고정 데이터 읽기
+# 위키피디아 국가별 신용등급 정보의 세 번째 테이블에 있는 데이터 읽어 들여 지도에 표시하기
+
+install.packages("XML")
+library(XML)
+url <- "https://en.wikipedia.org/wiki/List_of_countries_by_credit_rating"
+x <- readHTMLTable(readLines(url), which=3, header=T)
+
+head(x)
+#   Country/Region   Rating Outlook       Date Ref.\n
+# 1 Abu Dhabi, UAE   201 AA  Stable 2012-02-20    [3]
+# 2        Albania   091 B+  Stable 2016-02-05    [4]
+# 3        Andorra  141 BBB  Stable 2020-04-24    [5]
+# 4         Angola 061 CCC+  Stable 2020-03-26    [6]
+# 5      Argentina 061 CCC+  Stable 2020-09-07    [7]
+# 6          Aruba  141 BBB  Stable 2021-03-15    [8]
+
+levels(x$Rating) <- substring(levels(x$Rating), 4, nchar(levels(x$Rating)))
+
+x$Ranking <- x$Rating
+levels(x$Ranking) <- nlevels(x$Rating):1
+
+x$Ranking <- as.character(x$Ranking)
+x$Rating <- paste(x$Country, x$Rating, sep=": ")
+
+head(x)
+#   Country/Region                 Rating Outlook       Date Ref.\n  Ranking
+# 1 Abu Dhabi, UAE Abu Dhabi, UAE: 201 AA  Stable 2012-02-20    [3]   201 AA
+# 2        Albania        Albania: 091 B+  Stable 2016-02-05    [4]   091 B+
+# 3        Andorra       Andorra: 141 BBB  Stable 2020-04-24    [5]  141 BBB
+# 4         Angola       Angola: 061 CCC+  Stable 2020-03-26    [6] 061 CCC+
+# 5      Argentina    Argentina: 061 CCC+  Stable 2020-09-07    [7] 061 CCC+
+# 6          Aruba         Aruba: 141 BBB  Stable 2021-03-15    [8]  141 BBB
+
+# ★ gvis.editor="S&P" : 왼쪽 상단에 "S&P" button 생성 (그래프 편집)
+# -> 클릭 시 해당 데이터 활용해서 user가 자유롭게 map이 아닌 다른 그래프들 그려볼 수 있음
+g8 <- gvisGeoChart(x, "Country/Region", "Ranking", hovervar="Rating",
+                   options=list(gvis.editor="S&P",
+                                colorAxis="{colors:['#91BFDB','#FC8D59']}"))
+plot(g8)
+
+### 2. 가변 데이터 읽기
+# 최근 30일간 진도 4.0 이상의 지진발생 정보 사이트 data
+# but, 현재 해당 링크 지도 안 보임
+
+library(XML)
+url <- "https://ds.iris.edu/seismon/eventlist/index.phtml"
+eq <- readHTMLTable(readLines(url),
+                    colClasses=c("factor", rep("numeric",4), "factor"))$evTable
+names(eq) <- c("DATE", "LAT", "LON", "MAG", "DEPTH", "LOCATION_NAME", "IRIS_ID")
+
+eq$loc <- paste(eq$LAT, eq$LON, sep=":")
+
+g9 <- gvisGeoChart(eq, "loc", "DEPTH", "MAG",
+                   options=list(displayMode="Markers",
+                                colorAxis="{colors:['purple','red','orange','grey]}",
+                                backgroundColor="lightblue"), chartid="EQ")
+plot(g9)
+
