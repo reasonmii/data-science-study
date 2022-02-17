@@ -1,6 +1,7 @@
 
 #=====================================
 # R 기초
+# comment : ctrl + shift + C
 #
 # working directory 지정 : setwd("~\")
 # package 설치 : install.packages("패키지명")
@@ -9,8 +10,6 @@
 # data 요약 : summary(dataset)
 # data 조회 : head(dataset)
 # 작업종료 : q()
-#
-# comment : ctrl + shift + C
 #=====================================
 
 
