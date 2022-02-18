@@ -17,7 +17,7 @@
 # working directory 지정 : setwd("~\")
 # package 설치 : install.packages("패키지명")
 # package 불러오기 : library("패키지명")
-# data 불러오기 : data(dataset)
+# data 불러오기 : data(dataset), data(dataset, package="")
 # data 요약 : summary(dataset)
 # data 조회 : head(dataset)
 # 작업종료 : q()
