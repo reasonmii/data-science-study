@@ -14,7 +14,7 @@
 ---
 
 ### Mathematics in Markdown
-https://rpruim.github.io/s341/S19/from-class/MathinRmd.html
+- https://rpruim.github.io/s341/S19/from-class/MathinRmd.html
 
 ---
 Memo
