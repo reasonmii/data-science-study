@@ -9,6 +9,7 @@
 
 ### LINKS
 
+- Google Colab : https://colab.research.google.com/notebooks/welcome.ipynb?hl=ko
 - Top Research Papers in Data Science [2020] Free download</br>https://roboticsbiz.com/top-research-papers-in-data-science-2020-free-download
 
 ---
