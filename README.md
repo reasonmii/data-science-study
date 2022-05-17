@@ -23,6 +23,22 @@
 - [TechProFree](https://www.techprofree.com/) : Programming Books, Projects, Python
 - [Genial Code](https://genial-code.com/) : Python project examples and programming books
 
+<b>deep learning framework</b>
+- TensorFlow: 다양한 플랫폼으로 확장 중
+- Pytorch : 진입 장벽이 낮고 속도가 빠름
+- Caffe2 : from Facebook
+  - [PyTorch vs Caffe2](https://analyticsindiamag.com/pytorch-vs-caffe2-which-machine-learning-framework-should-you-use-for-your-next-project/)
+    - Application: It is mainly meant for the purpose of production
+      - applications involving large-scale image classification and object detection
+    - Model deployment : run on any platform once coded (more developer-friendly)
+    - Flexible: PyTorch is much more flexible
+- MarConvNet : MATLAB 환경에 익숙한 연구원들에게 좋음
+
+<b>cloud platform</b>
+- aws : 초기 클라우드 시장 점령
+- Google CloudPlatform : 공개적 마케팅 중
+- Microsoft Azure : B2B 중심으로 자리잡음
+
 <b>Memo</b>
 - [Mathematics in Markdown](https://rpruim.github.io/s341/S19/from-class/MathinRmd.html)
 - Modeling : ① Neural Network : overfitting -> ② SVM : learning time too long -> ③ Ensemble ex) bagging(rf), boosting, NN + RF
