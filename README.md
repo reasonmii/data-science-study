@@ -15,6 +15,7 @@
 
 <b>resources</b>
 - [Top Research Papers in Data Science [2020] Free download](https://roboticsbiz.com/top-research-papers-in-data-science-2020-free-download)
+- [딥린이를 위한 필독 논문 리스트](https://hsuuu.tistory.com/m/4)
 - [TechProFree](https://www.techprofree.com/) : Programming Books, Projects, Python
 - [Genial Code](https://genial-code.com/) : Python project examples and programming books
 
