@@ -1,4 +1,10 @@
 [Google Colab](https://colab.research.google.com/notebooks/welcome.ipynb?hl=ko)
+```python
+!pip uninstall torch
+!pip install torch==1.11.0
+import torch
+torch.__version__
+```
 
 <b>data</b>
 - 공공 데이터
