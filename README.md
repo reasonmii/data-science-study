@@ -1,4 +1,5 @@
 [Google Colab](https://colab.research.google.com/notebooks/welcome.ipynb?hl=ko)
+- uninstall and install to change version
 ```python
 !pip uninstall torch
 !pip install torch==1.11.0
