@@ -11,7 +11,7 @@ torch.__version__
 - 공공 데이터
   - [공공데이터포털](data.go.kr)
   - [통계청 MDIS](mdis.kostat.go.kr)
-  - [서울시 열린데이터광장](data.seoul.go.kr) : 지하철 이용 데이터, 미세먼지 데이터 등
+  - [서울시 열린데이터광장](https://data.seoul.go.kr/) : 지하철 이용 데이터, 미세먼지 데이터 등
 - 민간 데이터 : 일부 기업이 제한적인 내부 데이터 공개
   - [SKT 빅데이터허브](bigdatahub.co.kr) : 지역/시간대/업종별 통화량 데이터 등
   - [네이버 데이터랩](datalab.naver.com) : 검색어 통계 및 지역/업종/연령/성별 카드 사용 통계 (BC카드)
