@@ -9,12 +9,12 @@ torch.__version__
 
 <b>data</b>
 - 공공 데이터
-  - [공공데이터포털](data.go.kr)
-  - [통계청 MDIS](mdis.kostat.go.kr)
+  - [공공데이터포털](https://data.go.kr)
+  - [통계청 MDIS](https://mdis.kostat.go.kr/index.do)
   - [서울시 열린데이터광장](https://data.seoul.go.kr/) : 지하철 이용 데이터, 미세먼지 데이터 등
 - 민간 데이터 : 일부 기업이 제한적인 내부 데이터 공개
-  - [SKT 빅데이터허브](bigdatahub.co.kr) : 지역/시간대/업종별 통화량 데이터 등
-  - [네이버 데이터랩](datalab.naver.com) : 검색어 통계 및 지역/업종/연령/성별 카드 사용 통계 (BC카드)
+  - [SKT 빅데이터허브](https://bigdatahub.co.kr) : 지역/시간대/업종별 통화량 데이터 등
+  - [네이버 데이터랩](https://datalab.naver.com) : 검색어 통계 및 지역/업종/연령/성별 카드 사용 통계 (BC카드)
 
 <b>[kaggle](kaggle.com)</b>
 - 2010년 설립된 예측 모델 및 분석 대회 플랫폼
