@@ -29,6 +29,7 @@ torch.__version__
 - [딥린이를 위한 필독 논문 리스트](https://hsuuu.tistory.com/m/4)
 - [TechProFree](https://www.techprofree.com/) : Programming Books, Projects, Python
 - [Genial Code](https://genial-code.com/) : Python project examples and programming books
+- [Weights & Biases](https://wandb.ai/site)
 
 <b>deep learning framework</b>
 - TensorFlow: 다양한 플랫폼으로 확장 중
