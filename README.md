@@ -30,6 +30,10 @@ torch.__version__
 - [TechProFree](https://www.techprofree.com/) : Programming Books, Projects, Python
 - [Genial Code](https://genial-code.com/) : Python project examples and programming books
 - [wandB](https://wandb.ai/site)
+  - tensorflow, pytorch 등 사용하면서 어떤 걸로 logging 하면 좋을지 모르겠을 때, cloud 기반으로 집과 오피스 등 여러 곳에서 수시로 확인하고 싶을 때 추천
+  - basic (free)
+  - experiments - try a live colab : research용 tool
+  - DOCS : 설명 잘 되어 있음
 
 <b>deep learning framework</b>
 - TensorFlow: 다양한 플랫폼으로 확장 중
