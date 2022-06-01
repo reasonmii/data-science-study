@@ -29,14 +29,6 @@ torch.__version__
 - [딥린이를 위한 필독 논문 리스트](https://hsuuu.tistory.com/m/4)
 - [TechProFree](https://www.techprofree.com/) : Programming Books, Projects, Python
 - [Genial Code](https://genial-code.com/) : Python project examples and programming books
-- [wandB](https://wandb.ai/site)
-  - tensorboard와 비슷한데 훨씬 더 많은 기능 제공
-    - tensorflow, pytorch 등 사용하면서 어떤 걸로 logging 하면 좋을지 모르겠을 때
-    - cloud 기반으로 집과 오피스 등 여러 곳에서 수시로 확인하고 싶을 때
-    - hardware 에러 체크하고 싶을 때 (GPU 쓰다 보면 처음 보는 에러 발생해서 죽는 경우 있는데 그때 보통 hardware 에러)
-  - basic (free)
-  - experiments - try a live colab : research용 tool
-  - DOCS : 설명 잘 되어 있음
 
 <b>deep learning framework</b>
 - TensorFlow: 다양한 플랫폼으로 확장 중
@@ -48,6 +40,15 @@ torch.__version__
     - Model deployment : run on any platform once coded (more developer-friendly)
     - Flexible: PyTorch is much more flexible
 - MarConvNet : MATLAB 환경에 익숙한 연구원들에게 좋음
+
+<b>[wandB](https://wandb.ai/site)</b>
+- tensorboard와 비슷한데 훨씬 더 많은 기능 제공
+  - tensorflow, pytorch 등 사용하면서 어떤 걸로 logging 하면 좋을지 모르겠을 때
+  - cloud 기반으로 집과 오피스 등 여러 곳에서 수시로 확인하고 싶을 때
+  - hardware 에러 체크하고 싶을 때 (GPU 쓰다 보면 처음 보는 에러 발생해서 죽는 경우 있는데 그때 보통 hardware 에러)
+- basic (free)
+- experiments - try a live colab : research용 tool
+- DOCS : 설명 잘 되어 있음
 
 <b>cloud platform</b>
 - aws : 초기 클라우드 시장 점령
