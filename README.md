@@ -52,6 +52,20 @@ torch.__version__
 - experiments - try a live colab : research용 tool
 - DOCS : 설명 잘 되어 있음
 
+<b>[Hydra](https://hydra.cc/docs/intro/)</b>
+- 여러 hyperparameter configuration 관리하기 위한 open source tool
+- configuration을 여러 개의 파일(.py)로 쪼갰을 때 효율적
+- tool이 OmegaConf와 거의 비슷
+  - OmegaConf를 관리하던 개발자가 facebook에 casting 되어 만듦
+  - https://omegaconf.readthedocs.io/en/2.1_branch/
+  - DictConfig : Dictionary 형태의 configuration
+
+<b>[Pytorch Lightning](https://www.pytorchlightning.ai/)</b>
+- pytorch를 효율적으로 활용하기 위함
+- pytorch lightning 쓰면 코드가 깔끔하고 작업 시간도 감소
+  - GPU를 두 개 이상 사용하거나, 모델을 분산처리 하는 등을 하려면 pytorch는 tensorflow 대비 코딩이 어려워지기 때문
+  - i.e. multi GPU training 할 때 pytorch에서는 몇 번 GPU 썼는지 `CUDA`를 코드에 써야 하는데 그런 작업 필요 없음
+
 <b>cloud platform</b>
 - aws : 초기 클라우드 시장 점령
 - Google CloudPlatform : 공개적 마케팅 중
