@@ -32,7 +32,7 @@ torch.__version__
 
 <b>deep learning framework</b>
 - TensorFlow: 다양한 플랫폼으로 확장 중
-  - [tensorflow hub](https://www.tensorflow.org/hub?hl=ko)
+  - [tensorflow hub](https://www.tensorflow.org/hub?hl=ko) : ML
   - tensorboard
 - Pytorch : 진입 장벽이 낮고 속도가 빠름
 - Caffe2 : from Facebook
