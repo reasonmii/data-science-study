@@ -48,9 +48,9 @@ MLOps는 머신 러닝 프로젝트에만 국한된 일련의 엔지니어링 �
 |그래프 생성|Dynamic|Static/Dynamic|Static|
 |target|researcher, developer|researcher, developer|researcher|
 |Low/High-level API|Both|Both(high-level에 특화)|Both(low-level에 특화)|
-|Learning curve|적당|v:높음, v2:적당|약간 있음|
-|제품화를 위한 engineering|좋아짐, 불가해도 추후 TF 등 변경 가능|좋았고 더 좋아질 예정|X|
-|Multi-GPU Training|편하지만, 잘 쓰려하는 순간 까다로움(Pytorch-lightning)|v2로 넘어오면서 편해짐|지원|
+|Learning curve|적당|v1:높음, v2:적당|약간 있음|
+|제품화를 위한 engineering|좋아짐 (불가해도 추후 TF 등 변경 가능)|좋았고 더 좋아질 예정|X|
+|Multi-GPU Training|편하지만 잘 쓰려면 까다로움 (Pytorch-lightning)|v2로 넘어오면서 편해짐|지원|
 |TPU|지원|지원|지원|
 |Single Thread 속도|빠름|빠름|빠름|
 
