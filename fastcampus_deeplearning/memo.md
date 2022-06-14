@@ -1,5 +1,5 @@
 
-## Deep Learning이 201X년이 되어서야 뜬 이유
+## Deep Learning이 201X년에야 뜬 이유
 - Gradient vanishing 문제가 DNN 발전을 느리게 했는데 non-saturating activation function으로 해결된 것이 상대적으로 최근
 - 학습이 어려움 : Non-convex loss(비볼록 손실함수)를 포함하고 있어 Optimal Solution(최적해)를 찾는 것이 보장되지 않음
   - 새로 도입된 optimization 방법이 local minima에 빠지는 것 방지
@@ -9,6 +9,30 @@
 ## MLOps
 - machine learning, deep learning의 상업적 성공
 - 첫 운영 레벨의 정의
+- 머신 러닝 모델을 프로덕션으로 전환하는 프로세스를 간소화하고, 뒤이어 이를 유지관리하고 모니터링하는 데 주안점을 둔 머신 러닝 엔지니어링의 핵심 기능
+- 협업 기능이며, 주로 데이터 사이언티스트, DevOps 엔지니어, IT로 구성
+- 필요한 이유
+  - 머신 러닝 수명 주기는 데이터 수집, 데이터 준비, 모델 훈련, 모델 조정, 모델 배포, 모델 모니터링, 설명 가능성과 같은 복잡한 구성 요소가 많이 모인 형태로 구성
+  - 이 모든 프로세스를 동기화하고 협력이 이루어지는 상태를 유지하려면 극히 엄격한 운영 원칙을 적용해야 함
+  - MLOps는 머신 러닝 수명 주기의 실험, 반복과 지속적 개선을 총망라
+- 구성요소
+  - EDA (Exploratory Data Analysis)
+  - Data prep & Feature engineering
+  - Model training & tuning
+  - Model review & governance
+  - Model inference & serving
+  - Model deployment & monitoring
+  - Automated model retraining
+- 장점
+  - 효율성: MLOps를 사용하면 데이터 팀이 모델을 더욱 빨리 배포하고 양질의 ML 모델을 제공하며 배포와 프로덕션 속도 up
+  - 확장성: MLOps는 엄청난 확장성과 관리를 지원하므로 수천 개의 모델을 감독, 제어, 관리, 모니터링하여 지속해서 통합, 제공하고 지속해서 배포 가능
+    - MLOps는 ML 파이프라인 재현성을 제공하므로 여러 데이터 팀에서 좀 더 긴밀하게 결합된 협업 추진 가능
+    - DevOps 팀과 IT 팀의 갈등이 줄어들며 release 속도 up
+  - 리스크 완화: 머신 러닝 모델에는 철저한 규제 검토와 드리프트 검사가 필요할 때가 많은데
+    - 투명성 강화, 요청에 빠른 대응, 주어진 기업이나 업계의 규정을 더욱 엄격히 준수하는 데 도움
+
+MLOps와 DevOps는 무엇이 다릅니까?
+MLOps는 머신 러닝 프로젝트에만 국한된 일련의 엔지니어링 실무로, 소프트웨어 엔지니어링 분야에서 광범위하게 도입된 DevOps 원칙을 빌려온 것입니다. DevOps는 애플리케이션 전달에 지속해서 반복적이면서 속도도 빠른 접근 방식을 도입했지만, MLOps의 경우 머신 러닝 모델의 프로덕션 돌입까지의 과정에 같은 원칙을 적용합니다. 두 경우 모두 소프트웨어 품질 개선, 패치 적용과 릴리스 속도 가속, 높은 고객 만족도 달성과 같은 결과를 낸다는 점은 같습니다.
 
 ## Pytorch vs TensorFlow vs Jax
 - 연구에서는 2020년 이후 pytorch가 tensorflow 역전
