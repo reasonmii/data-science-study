@@ -11,6 +11,12 @@
 - 첫 운영 레벨의 정의
 
 ## Pytorch vs TensorFlow vs Jax
+- 연구에서는 2020년 이후 pytorch가 tensorflow 역전
+- tensorflow가 편해졌지만 v1과 혼재되어 잘못 쓰기 쉽고 인터넷에 v1, 2 자료가 혼재
+- pytorch가 research engineering에서는 부족하지만 많이 따라옴
+- 최근 MLOps와 함께 model exchange 및 model serving방법이 많이 연구됨에 따라 framework-agnostic AI model serving이 가능해지고 어떤 frame work를 쓰든 상관없는 분위기
+- 결론 : tensorflow v2와 pytorch 중 편한 것 쓰기
+
 ||Pytorch|TensorFlow|Jax|
 |---|---|---|---|
 |개발, 운영|Facebook|Google|Google|
