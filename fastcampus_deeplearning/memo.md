@@ -1,6 +1,6 @@
 
 ## Deep Learning이 201X년에야 뜬 이유
-- Gradient vanishing 문제 (DNN 발전 느림)  non-saturating activation function으로 해결된 것이 상대적으로 최근
+- Gradient vanishing 문제 (DNN 발전 느림) -> non-saturating activation function으로 해결된 것이 상대적으로 최근
 - 학습이 어려움 : Non-convex loss(비볼록 손실함수)를 포함하고 있어 Optimal Solution(최적해)를 찾는 것이 보장되지 않음
   - 새로 도입된 optimization 방법이 local minima에 빠지는 것 방지
   - 그러나 많은 critical points(임계점)이 local minima인 줄 알고 있던 많은 문제가 사실 saddle point이기도 했음
