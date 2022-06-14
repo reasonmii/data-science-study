@@ -1,5 +1,5 @@
 
-## 딥러닝이 201X년이 되어서야 뜬 이유
+## Deep Learning이 201X년이 되어서야 뜬 이유
 - Gradient vanishing 문제가 DNN 발전을 느리게 했는데 non-saturating activation function으로 해결된 것이 상대적으로 최근
 - 학습이 어려움 : Non-convex loss(비볼록 손실함수)를 포함하고 있어 Optimal Solution(최적해)를 찾는 것이 보장되지 않음
   - 새로 도입된 optimization 방법이 local minima에 빠지는 것 방지
@@ -18,7 +18,11 @@
 |그래프 생성|Dynamic|Static/Dynamic|Static|
 |target|researcher, developer|researcher, developer|researcher|
 |Low/High-level API|Both|Both(high-level에 특화)|Both(low-level에 특화)|
-|Learning curve|
+|Learning curve|적당|v:높음, v2:적당|약간 있음|
+|제품화를 위한 engineering|좋아짐, 불가해도 추후 TF 등 변경 가능|좋았고 더 좋아질 예정|X|
+|Multi-GPU Training|편하지만, 잘 쓰려하는 순간 까다로움(Pytorch-lightning)|v2로 넘어오면서 편해짐|지원|
+|TPU|지원|지원|지원|
+|Single Thread 속도|빠름|빠름|빠름|
 
 
 
