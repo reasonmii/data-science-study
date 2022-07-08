@@ -15,11 +15,9 @@
 - 다양한 기업의 실제 데이터와 분석 사례있음
 - 기업/단체는 문제를 해결하고 데이터 사이언티스트는 실력을 확인할 수 있는 기회 제공
 
----
 <b>community</b>
 - [Data Science Central](https://www.datasciencecentral.com/) : A community for Big Data Practitioners
 
----
 <b>resources</b>
 - [Top Research Papers in Data Science [2020] Free download](https://roboticsbiz.com/top-research-papers-in-data-science-2020-free-download)
 - [딥린이를 위한 필독 논문 리스트](https://hsuuu.tistory.com/m/4)
@@ -39,6 +37,24 @@
     - Model deployment : run on any platform once coded (more developer-friendly)
     - Flexible: PyTorch is much more flexible
 - MarConvNet : MATLAB 환경에 익숙한 연구원들에게 좋음
+---
+<b>Data Science library</b>
+- Numpy, SciPy : for analysis
+- Matplotlib : for data visualization
+- TensorFlow : for Machine Learning
+- tqdm
+  - 진행상황을 표시하는 바
+  - 반복문에서 사용하면 어느정도로 진행했는지 알 수 있어서 좋음
+- re
+  - 분석을 위해 문자열 리스트 정형화
+  - 공백문자 제거, 필요 없는 문장 부호 제거, 대소문자 맞추기 : `re.sub('[!#?]','',value)`
+  - `문자열.strip()` : 문자열에서 양쪽 끝에 있는 공백과 \n 기호를 삭제, 중간에 존재하는 것은 제거 X
+  - `문자열.title()` : 첫 글자 대문자
+
+---
+<b>NLP</b>
+- [KoNLPy](https://cceeddcc.tistory.com/8) : 한국어 정보처리를 위한 파이썬 패키지
+- [LSTM](https://bangseogs.tistory.com/96)
 
 ---
 <b>[wandB](https://wandb.ai/site)</b>
@@ -63,11 +79,6 @@
 - pytorch lightning 쓰면 코드가 깔끔하고 작업 시간도 감소
   - GPU를 두 개 이상 사용하거나, 모델을 분산처리 하는 등을 하려면 pytorch는 tensorflow 대비 코딩이 어려워지기 때문
   - i.e. multi GPU training 할 때 pytorch에서는 몇 번 GPU 썼는지 `CUDA`를 코드에 써야 하는데 그런 작업 필요 없음
-
----
-<b>NLP</b>
-- [KoNLPy](https://cceeddcc.tistory.com/8) : 한국어 정보처리를 위한 파이썬 패키지
-- [LSTM](https://bangseogs.tistory.com/96)
 
 ---
 <b>cloud platform</b>
