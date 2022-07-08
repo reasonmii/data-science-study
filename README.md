@@ -12,6 +12,7 @@
 - US data Websites
   - censusreporter.org : visualized data
   - data.census.gov : customized tables
+  - [SuperDataScience](https://www.superdatascience.com/machine-learning) : Machine Learning A-Z Download Practice Datasets
 
 <b>[kaggle](kaggle.com)</b>
 - 2010년 설립된 예측 모델 및 분석 대회 플랫폼
@@ -26,6 +27,9 @@
 - [딥린이를 위한 필독 논문 리스트](https://hsuuu.tistory.com/m/4)
 - [TechProFree](https://www.techprofree.com/) : Programming Books, Projects, Python
 - [Genial Code](https://genial-code.com/) : Python project examples and programming books
+- [StatQuest with Josh Starmer](https://www.youtube.com/user/joshstarmer/videos)
+  - StatQuest is sponsored by JAD (Just Add Data)
+- [Explained Visually](https://setosa.io/ev/) : Concepts Visually Explained
 
 ---
 <b>deep learning framework</b>
