@@ -9,6 +9,9 @@
 - 민간 데이터 : 일부 기업이 제한적인 내부 데이터 공개
   - [SKT 빅데이터허브](https://bigdatahub.co.kr) : 지역/시간대/업종별 통화량 데이터 등
   - [네이버 데이터랩](https://datalab.naver.com) : 검색어 통계 및 지역/업종/연령/성별 카드 사용 통계 (BC카드)
+- US data Websites
+  - censusreporter.org : visualized data
+  - data.census.gov : customized tables
 
 <b>[kaggle](kaggle.com)</b>
 - 2010년 설립된 예측 모델 및 분석 대회 플랫폼
