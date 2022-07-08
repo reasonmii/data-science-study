@@ -1,32 +1,6 @@
 [Google Colab](https://colab.research.google.com/notebooks/welcome.ipynb?hl=ko)
 
 ---
-<b>python command</b>
-- 관리자 권한으로 실행 `conda prompt`
-- upgrade
-```python
-conda update conda
-conda update anaconda
-conda update spyder
-python -m pip install --upgrade pip   # upgrade pip to the latest version
-```
-- install package
-  - `python -m pip install <package-name>`
-  - `conda install -c quantopian geopandas`
-- uninstall and install to change version
-```python
-!pip uninstall torch
-!pip install torch==1.11.0
-import torch
-torch.__version__
-```
-- check version
-```python
-import geopandas as gpd
-gpd.__version__
-```
-
----
 <b>data</b>
 - 공공 데이터
   - [공공데이터포털](https://data.go.kr)
