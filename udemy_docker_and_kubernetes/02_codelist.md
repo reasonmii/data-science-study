@@ -50,6 +50,7 @@
   - 관련 container가 먼저 삭제되어 있어야 image 삭제 가능
 - `docker image prune` : 현재 실행 중인 container에서 사용되지 않는 모든 image 삭제
 - `docker image prune -a` : 모든 image 삭제
+- `docker volume rm [volume name]`, `docker volume prune` : volume 
 
 <b>복사</b>
 - `docker cp [복사할 파일] [목적지]` : 실행 중인 컨테이너나 실행 중인 컨테이너 밖으로 폴더/파일 복사 (copy)
