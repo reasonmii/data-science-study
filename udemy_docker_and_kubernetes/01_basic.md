@@ -50,6 +50,9 @@
 
 <b>External Data Storage</b>
 - Volumes : managed by docker
+  - anonymous volumes : container가 존재하는 동안만 존재
+  - named volumes : container가 shutdown 되어도 존재함
+    - 영구적으로 필요한데 edit할 필요는 없는 data에 유용
 - Bind Mounts : Managed by you
 
 <b>volumes</b>
