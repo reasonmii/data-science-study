@@ -11,6 +11,13 @@
   - 사용 중인 OS
   - 이미지 내 여러 layer들
 
+<b>build</b>
+- `docker build .`
+- `docker build -t [image name]:[image tag] .` : 내가 원하는 name, tag 설정
+  - `tag`는 이름이어도 되고 숫자여도 됨
+  - `docker images`로 결과 확인
+  - ex) `docker build -t goals:latest .`
+  
 <b>실행</b>
 - `docker run [id]`
 - `docker start [name]`
@@ -23,6 +30,9 @@
 - `--name [new name]` : image name 직접 지정
   - `docker ps`로 확인해보면 name 부분에 지정한 이름으로 들어가 있음
   - ex) `docker run -p 3000:80 -d --rm --name golasapp [image id]`
+- `[name]:[tag]` 활용해서 실행하기
+  - 내가 직접 name, tag 지정했으면 쉽게 사용 가능
+  - ex) `docker run -p 3000:80 -d --rm --name goalsapp goals:latest`
 
 <b>중단</b>
 - `docker stop [name]`
