@@ -17,7 +17,10 @@
   - `tag`는 이름이어도 되고 숫자여도 됨
   - `docker images`로 결과 확인
   - ex) `docker build -t goals:latest .`
-  
+
+<b>변경</b>
+- `docker tag [past name]:[past tag] [new name]:[new tag]` : 이미 build한 image의 name, tag 변경
+
 <b>실행</b>
 - `docker run [id]`
 - `docker start [name]`
