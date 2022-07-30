@@ -18,8 +18,10 @@
   - `docker images`로 결과 확인
   - ex) `docker build -t goals:latest .`
 
-<b>변경</b>
-- `docker tag [past name]:[past tag] [new name]:[new tag]` : 이미 build한 image의 name, tag 변경
+<b>image 이름 변경</b>
+- `docker tag [past name]:[past tag] [new name]:[new tag]`
+- 이미 build한 image의 name, tag 변경
+- original은 두고 복제품 
 
 <b>실행</b>
 - `docker run [id]`
