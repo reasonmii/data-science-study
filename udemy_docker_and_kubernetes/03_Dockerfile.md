@@ -17,7 +17,7 @@ CMD [ "node", "server.js" ]
 
 - `FROM [image name]` : docker hub 공식 이름
   - `FROM [image name]:[image tag]`
-    - ex) `FROM node:12` : docker hub에서 node 이미지 중에서도 `12` version 가져
+    - ex) `FROM node:12` : docker hub에서 node 이미지 중에서도 `12` version 가져와라 (현재 환경이 12만 지원할 수도 있음)
 - `WORKDIR [image/container file system]` : 작업 directory 설정
   - 앞으로의 명령들을 모두 해당 폴더에서 실행할 것임을 docker에게 알림
   - 이거 지정 안 하면 아래 `RUN npm install` 실행했을 때, host file system에서 실행되고 해당 경로에서는 실행 안 돼서 에러 발생
