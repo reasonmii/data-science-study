@@ -1,4 +1,4 @@
-- 사용파일 : data-volumnes-01-starting-setup
+사용파일 : data-volumnes-01-starting-setup
 
 <b>Dockerfile 생성</b>
 ```
