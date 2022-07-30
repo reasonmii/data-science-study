@@ -38,3 +38,12 @@
   - no build step required, everythin gis included in the image already! (source code 필요X)
   - 보통 이 로 대부분 공유해서 작업
 
+<b>Data</b>
+- Application (code + environment)
+  - read-only, hence stored in images
+- Temporary App Data
+  - ex) entered user input
+  - read + write, temporary, hence stored in containers
+- Permanent App Data
+  - ex) user accounts
+  - read + write, permanent, stored with containers & **volumnes**
