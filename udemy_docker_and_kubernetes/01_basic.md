@@ -48,6 +48,10 @@
   - ex) user accounts
   - read + write, permanent, stored with containers & **volumnes**
 
+<b>External Data Storage</b>
+- Volumes : managed by docker
+- Bind Mounts : Managed by you
+
 <b>volumes</b>
 - container와는 별개로 host machine hard drive에 있는 것
 - container가 shutdown 되어도 살아 있음
