@@ -57,6 +57,12 @@ CMD ["node", "server.js"]
 
 ### volume
 - 온라인 화면에서 입력한 데이터 persist 하게 만들기
+- 방법1, 2가 실패한 이유
+  - `run`에서 `--rm` 옵션으로 익명 볼륨이 자동 제거되기 때문
+  - 이 옵션 사용하지 않고 `run`하면, 이후 `docker rm ...`으로 제거해도 익명 볼륨 제거X
+  - 그래도 `docker run`으로 재실행하면 새 익명 볼륨이 생성됨
+  - 사용하지 않는 익명 볼륨들이 쌓이게 됨
+  - 삭제 : `docker volume rm [volume name]`, `docker volume prune`
 
 <b>Dockerfile 생성</b>
 - `VOLUME` : 'feedback' 내용을 inside of my container에 저장
