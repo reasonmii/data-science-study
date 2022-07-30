@@ -29,7 +29,7 @@ CMD ["node", "server.js"]
 - 화면에서 title, document text 작성 - save
   - ex) title : awesome, text : this is awesome
 - 주소창 : http://localhost:3000/feedback/awesome.txt
-  - 결과 : 'this is awesome' 이라고 화면에 나옴
+  - 화면결과 : this is awesome
   - 'server.js' 파일에 `app.use('/feedback', express.static('feedback'));` 코드 덕분
   - ★ but, Docker container에만 존재하는 것
     - local 'feedback' 폴더에서는 안 보임
@@ -53,3 +53,70 @@ CMD ["node", "server.js"]
 - 인터넷 주소창 : http://localhost:3000/feedback/awesome.txt 입력
   - `--rm`으로 container 제거한 적이 없으니 데이터 보존되어 있음
 
+---
+
+### volume
+
+<b>Dockerfile 생성</b>
+```
+FROM node:14
+
+WORKDIR /app
+
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 80
+
+VOLUME [ "/app/feedback" ]
+
+CMD ["node", "server.js"]
+```
+
+- `VOLUME` : 'feedback' 내용을 inside of my container에 저장
+  - 'feedback' 내용 : 인터넷 주소창 들어간 후 입력 내용
+  - server.js 코드 `const finalFilePath = path.join(__dirname, 'feedback', adjTitle + '.txt');` 부분 참고
+
+<b>Terminal</b>
+- `docker build -t feedback-node:volumes .`
+- `docker run -d -p 3000:80 --rm --name feedback-app feedback-node:volumes`
+
+<b>인터넷 : 에러발생</b>
+- 주소창 : http://localhost:3000/
+- 화면에서 title, document text 작성 - save
+  - ex) title : awesome, text : one more time!
+  - 계속 loading 중이고 작동이 안 됨
+
+<b>Terminal : 문제해결</b>
+- `docker logs feedback-app` 결과로 문제 확인
+  - UnhandledPromiseRejectionWarning: cross-device link not permitted, rename '/app/temp/hello.txt' -> '/app/feedback/hello.txt'
+  - 'server.js' 파일에서 `await fs.rename(tempFilePath, finalFilePath);` 이 부분 때문
+  - 아래와 같이 수정 : final에 경로 복사하고 temp 경로는 삭제
+
+```
+await fs.copyFile(tempFilePath, finalFilePath);
+await fs.unlink(tempFilePath);
+```
+
+- `docker stop feedback-app`
+- `docker rmi feedback-node:volumes`
+- `docker build -t feedback-node:volumes .`
+- `docker run -d -p 3000:80 --rm --name feedback-app feedback-node:volumes`
+
+<b>인터넷 : 결과확인</b>
+- 주소창 : http://localhost:3000/
+- 화면에서 title, document text 작성 - save
+  - ex) title : awesome, text : one more time!
+- 주소창 : http://localhost:3000/feedback/awesome.txt
+  - 결과 : one more time
+
+<b>container 삭제/중단 후 재실행</b>
+- `docker stop feedback-app`
+  - 앞에 코드에서 `--rm` 있었으니 중단하면 container 삭제됨
+- `docker run -d -p 3000:80 --rm --name feedback-app feedback-node:volumes`
+  - 이전과 같은 image를 기반으로 하지만 새로운 container 생성
+- 주소창 : http://localhost:3000/feedback/awesome.txt
+  - error 발생 : 결과 안 나옴
