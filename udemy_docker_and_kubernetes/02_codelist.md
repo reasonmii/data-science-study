@@ -34,6 +34,8 @@
 - `[name]:[tag]` 활용해서 실행하기
   - 내가 직접 name, tag 지정했으면 쉽게 사용 가능
   - ex) `docker run -p 3000:80 -d --rm --name goalsapp goals:latest`
+- `-v [volume name]:[path]` : named volume 생성
+  - ex) `docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback feedback-node:volumes`
 
 <b>중단</b>
 - `docker stop [name]`
