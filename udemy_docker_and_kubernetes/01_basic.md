@@ -47,3 +47,10 @@
 - Permanent App Data
   - ex) user accounts
   - read + write, permanent, stored with containers & **volumnes**
+
+<b>volumes</b>
+- container와는 별개로 host machine hard drive에 있는 것
+- container가 shutdown 되어도 살아 있음
+  - If a container (re-)start and mounts a volume, any data inside of that volume is available in the container
+- container에 mount 해서 사용
+- container는 volume data 읽기/쓰기 가능
