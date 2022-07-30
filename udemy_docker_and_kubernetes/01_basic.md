@@ -6,6 +6,7 @@
 - name : tag
   - name : defines a group of possible more specialized images ex) "node"
   - tag (optional) : defines a specialized image **within a group** of images ex) "14"
+- image push/pull 하는 곳 : Docker Hub, Private Registry
 
 <b>Container</b>
 - run based on images
