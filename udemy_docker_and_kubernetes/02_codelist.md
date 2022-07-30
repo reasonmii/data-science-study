@@ -10,6 +10,7 @@
   - 이미지를 기반으로 실행될 container 구성,  ENTRYPOINT
   - 사용 중인 OS
   - 이미지 내 여러 layer들
+- `docker volume ls`
 
 <b>build</b>
 - `docker build .`
