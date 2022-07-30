@@ -28,6 +28,7 @@ CMD [ "node", "server.js" ]
     - 하지만 절대경로 `/app` 쓰는 것 선호 (명확히 알 수 있기 때문)
 - `RUN [install]` : 파일을 run하기 위해 install이 필요한 부분
 - `EXPOSE [port]` : docker에게 이 컨테이너가 실행되면 어떤 port를 local system으로 보여줄 지 알려줌
+  - ex) 'server.js' 파일 보면 제일 아래 app.listen(80) 이라고 되어 있으니 `EXPOSE 80`
 - `CMD ["node", "server.js"]` : node command를 사용해서 server.js 파일을 실행해라
   - `CMD`와 `RUN`의 차이점
     - 이미지를 기반으로 '컨테이너'를 실행하는 경우만 '서버'를 시작하고 싶으니 'CMD' 사용
