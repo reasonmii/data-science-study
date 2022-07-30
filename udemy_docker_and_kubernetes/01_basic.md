@@ -35,5 +35,5 @@
 - 2) Share a Built Image
   - Download an image, run a container based on it
   - no build step required, everythin gis included in the image already! (source code 필요X)
-  - 보통 이걸로 
+  - 보통 이 로 대부분 공유해서 작업
 
