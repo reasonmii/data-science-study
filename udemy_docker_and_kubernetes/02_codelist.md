@@ -17,12 +17,7 @@
   - `tag`는 이름이어도 되고 숫자여도 됨
   - `docker images`로 결과 확인
   - ex) `docker build -t goals:latest .`
-
-<b>image 이름 변경</b>
-- `docker tag [past name]:[past tag] [new name]:[new tag]`
-- 이미 build한 image의 name, tag 변경
-- original은 두고 복제품 
-
+  
 <b>실행</b>
 - `docker run [id]`
 - `docker start [name]`
@@ -50,8 +45,8 @@
   - `docker images`로 id 확인
   - 이미지 내부 모든 레이어 삭제
   - 관련 container가 먼저 삭제되어 있어야 image 삭제 가능
-- `docker image prune`
-  - 현재 실행 중인 container에서 사용되지 않는 모든 image 삭제
+- `docker image prune` : 현재 실행 중인 container에서 사용되지 않는 모든 image 삭제
+- `docker image prune -a` : 모든 image 삭제
 
 <b>복사</b>
 - `docker cp [복사할 파일] [목적지]` : 실행 중인 컨테이너나 실행 중인 컨테이너 밖으로 폴더/파일 복사 (copy)
@@ -65,6 +60,49 @@
   - ex) `docker cp boring_vaughan:/test/test.txt dummy`
     - 'dummy' local 폴더에 'test.txt' 파일 복사
 - container가 log file을 많이 생성하는 경우 `docker cp`로 local에 옮겨서 자세히 보고  가능
+
+---
+
+### 공유
+- `docker push [image name]`, `docker pull [image name]`
+- default : Docker Hub
+- private registry에 하고 싶은 경우 `[image name]` 부분에 `[HOST:NAME]` 입력
+
+<b>Push</b>
+- Docker Hub : Create a Repository
+  - name 설정 ex) node-hello-world
+  - Public/Private 설정 (무료 버전에서는 private repo 1개로 제한)
+  - create
+  - push code 복사 : `docker push reasonmii/node-hello-world`
+- Terminal : image name 확인
+  - image name이 다른 경우 build 실행하면 에러 발생
+  - 처음부터 image name 동일하게 build 하기 : `docker build -t reasonmii/node-hello-world .`
+  - 이미 build한 상태라면 name, tag만 변경하기
+    - `docker tag [past name]:[past tag] [new name]:[new tag]`
+    - `tag` 부분은 optional
+    - `docker tag goals:latest reasonmii/node-hello-world:latest`
+- Terminal : docker hub와 연결
+  - 소유자만 push 할 수 있게 설정되어 있어서 (default) log in 안 하면 push 하는 경우 denied error 발생
+  - `docker login` : 한 번 해 놓으면 계속 사용 가능
+  - cf) `docker logout`
+- Terminal : image push
+  - `docker push reasonmii/node-hello-world`
+- Docker Hub 돌아가서 새로고침하면 push 된 것 확인 가능
+
+<b>Pull</b>
+- 방법
+  - `docker logout` - `docker pull reasonmii/node-hello-world`
+    - public repo이기 때문에 login 상태가 아니라도 다운로드 가능
+  - `docker run -p 8000:80 --rm reasonmii/node-hello-world`
+  - 인터넷 주소창 : 'localhost:8000' 결과 확인
+  - `docker ps` - `docker stop [name]`
+- pull은 container에서 항상 가장 최신 이미지를 가져옴
+  - 이미 pull 했었는데 변경사항 있는 경우 pull - run 할 것
+  - pull 한 적이 없는데 run 실행하는 경우
+    - `docker run reasonmii/node-hello-world`
+    - `docker run`이 local에서 해당 image 찾지 못하는 경우 container history에 자동 접근
+    - 현재 container history는 Docker Hub
+    - 이곳에서 같은 이름의 이미지 있는지 확인하고 찾으면 자동으로 pull 
 
 ---
 
