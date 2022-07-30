@@ -10,8 +10,6 @@
 <b>Container</b>
 - run based on images
 - 여러 컨테이너가 서로 간섭하지 않고 동일한 이미지에 기반해서 실행 가능
-- Everyone who has an image, can create containers based on image!
-  - 서로 공유할 때 container가 아닌 image를 공유하는 것
 
 <b>Docker Hub</b>
 - image 공유 사이트
@@ -28,3 +26,14 @@
 - Terminal - New Terminal
   - `[ctrl] + C 두 번` : 실행 중인 작업 
   - `clear` : terminal 창 깨끗하게
+
+<b>공유</b>
+- Everyone who has an image, can create containers based on image!
+  - 서로 공유할 때 container가 아닌 image를 공유하는 것
+- 1) **Share a Dockerfile** + surrounding files/folders (source code)
+  - `docker build .`
+- 2) Share a Built Image
+  - Download an image, run a container based on it
+  - no build step required, everythin gis included in the image already! (source code 필요X)
+  - 보통 이걸로 
+
