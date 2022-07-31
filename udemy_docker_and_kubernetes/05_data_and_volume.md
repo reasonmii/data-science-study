@@ -147,6 +147,11 @@ CMD ["node", "server.js"]
 
 ### Bind Mounts
 
+<b>volume & bind mounts 구분하기</b>
+- anonymous volume : `-v /app/node_modules`
+- named volume : `-v [volume name]:/app/node_modules`
+- bind mounts : `-v "[PATH]:/app"
+
 <b>방법1 : 실패</b>
 - volume 실행 코드에 `-v "[absolute project folder path]:/app"` 부분만 추가
   - `/app`은 Dockerfile의 WORKDIR
@@ -161,4 +166,41 @@ CMD ["node", "server.js"]
   - `run` 코드에서 `--rm` 부분만 빼고 다시 실행해 보기
   - ★ 에러 확인 : `docker logs feedback-app`
     - 결과 : Error: Cannot find module 'express'
+    - 'Dockerfile'의 `RUN npm install`이 실행되기 전에 npm을 사용하는 코드가 사용되기 때문에 발생 
+
+<b>방법2 : 성공</b>
+- 해결방법 : anonymous volume 활용하기
+- `-v /app/node_modules` 코드 추가
+  - 'Dockerfile'에서 `EXPOSE 80`와 `CMD` 코드 사이에 `VOLUME ["/app/node_modules"]` 코드 작성하는 것과 같은 역할
+    - 단, 이렇게 하면 데이터 바뀔 때마다 image rebuild 과정 필요
+  - cf) node_modules 폴더 : 'Dockerfile'에서 `RUN npm install` 명령어로 생성된 default 폴더
+
+```
+docker stop feedback-app
+
+docker rm feedback-app
+
+docker run -d --rm  -p 3000:80 --name feedback-app -v feedback:/app/feedback -v "/Users/reasonmii/udemy_docker/data-volumes-01-starting-setup:/app" -v /app/node_modules  feedback-node:volumes
+```
+
+<b>방법2가 도움되는 이유</b>
+- docker는 항상 container에 setting한 모든 volume을 평가
+- 그러다 충돌이 발생하면 더 구체적이고 longer internal path wins!
+- 예를 들어 위 코드에서 `-v "/Users/reasonmii/udemy_docker/data-volumes-01-starting-setup:/app`의 경로는 ① `/app`이고 `-v /app/node_modules`의 경로는 ② `/app/node_modules`
+- 더 긴 path가 이기니까 ② `/app/node_modules` 폴더에 바인딩 됨
+- 결론 : `RUN npm install` 과정에서 만들어진 ② 폴더가 살아 남아 ① bind mount와 공존하게 되는 것
+
+<b>결론</b>
+- container 삭제해도 이전 데이터 삭제 X
+  - 인터넷 주소창 : http://localhost:3000/
+    - 화면에서 title (test), document text (this is test!) 작성 - save
+  - 인터넷 주소창 : http://localhost:3000/feedback/awesome.txt
+    - container 삭제했고 awesome 입력한 적 없는데 이전 결과 여전히 남아 있음
+- source file 변경하고 image rebuild 안 해도 인터넷 페이지에 바로 반영 됨
+  - 'pages' - 'feedback.html' 에서 제목인 'Your Feedback'을 'Your Feedback!'으로 변경 - 저장
+  - 인터넷 주소창 : http://localhost:3000/ 새로고침 해서 결과 확인
+- 이 두 가지는 익명볼륨을 추가한 경우에만 작동
+  - 'bind mount' 폴더가 'node_modules' 폴더를 덮어쓰지 않기 때문에 가능 
+
+
 
