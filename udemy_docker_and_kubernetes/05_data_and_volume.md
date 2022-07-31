@@ -143,3 +143,11 @@ CMD ["node", "server.js"]
   - 주소창 : http://localhost:3000/feedback/awesome.txt
   - 아까 입력했던 'awesome!' 그대로 있음
 
+---
+
+### Bind Mounts
+
+- absolute project folder path : source code가 있는 'server.js' 우클릭 - 'Copy Path' 클릭 - 붙여넣기 - 가장 마지막 '/server.js' 부분 삭제
+  - 경로 폴더명 중 space, 특수문자 있으면 안됨
+  - 경로 폴더는 무조건 Docker Parent folder에 있어야 함
+    - 상단 ㅇ
