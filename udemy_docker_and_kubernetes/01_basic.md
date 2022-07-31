@@ -54,6 +54,7 @@
   - named volumes : container가 shutdown 되어도 존재함
     - 영구적으로 필요한데 edit할 필요는 없는 data에 유용
 - Bind Mounts : Managed by you
+  - Great for persistent, editable data ex) source code
 
 <b>volumes</b>
 - container와는 별개로 host machine hard drive에 있는 것
