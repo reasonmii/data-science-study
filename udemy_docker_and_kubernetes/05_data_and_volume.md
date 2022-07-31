@@ -147,7 +147,18 @@ CMD ["node", "server.js"]
 
 ### Bind Mounts
 
-- absolute project folder path : source code가 있는 'server.js' 우클릭 - 'Copy Path' 클릭 - 붙여넣기 - 가장 마지막 '/server.js' 부분 삭제
-  - 경로 폴더명 중 space, 특수문자 있으면 안됨
-  - 경로 폴더는 무조건 Docker Parent folder에 있어야 함
-    - 상단 ㅇ
+<b>방법1 : 실패</b>
+- volume 실행 코드에 `-v "[absolute project folder path]:/app"` 부분만 추가
+  - `/app`은 Dockerfile의 WORKDIR
+  - absolute project folder path : source code가 있는 'server.js' 우클릭 - 'Copy Path' 클릭 - 붙여넣기 - 가장 마지막 '/server.js' 부분 삭제
+    - 경로 폴더명 중 space, 특수문자 있으면 안됨
+    - 경로 폴더는 무조건 Docker Parent folder에 있어야 함
+      - Parent folder : 상단 Docker 아이콘 클릭 - Resources - File sharing 에 있는 폴더들
+      - 없으면 추가하기
+    - ex) `docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v "/Users/reasonmii/udemy_docker/data-volumes-01-starting-setup:/app" feedback-node:volumes`
+- 에러발생
+  - `docker ps`, `docker ps -a` 모두 결과 없음
+  - `run` 코드에서 `--rm` 부분만 빼고 다시 실행해 보기
+  - ★ 에러 확인 : `docker logs feedback-app`
+    - 결과 : Error: Cannot find module 'express'
+
