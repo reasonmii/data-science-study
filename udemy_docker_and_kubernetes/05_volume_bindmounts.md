@@ -283,3 +283,42 @@ docker run -d --rm  -p 3000:80 --name feedback-app -v feedback:/app/feedback -v 
 - 인터넷 주소창 : http://localhost:3000/ - 아무거나 입력
 - Terminal `docker logs feedback-app` 결과 : TEST!!!! 출력됨
 
+---
+
+### 읽기 전용 volume 만들기
+- volume : read-write (default)
+- 변경되면 안 되는 부분은 읽기 전용으로 해줘야 안전
+
+```
+docker run -d --rm  -p 3000:80 --name feedback-app -v feedback:/app/feedback -v "/Users/reasonmii/udemy_docker/data-volumes-01-starting-setup:/app:ro" -v /app/temp -v /app/node_modules  feedback-node:volumes
+```
+- `:ro` 추가하면 Docker가 해당 폴더나 그 하위 폴더에 write 불가능
+  - `ro` : read only
+  - 이렇게 해도 온라인에서 title, text는 여전히 입력 (쓰기) 가능
+  - 해당 data는 `/app/feedback` 경로에 저장되는데 `ro`를 적용한 `/app`보다 `/app/feedback`이 더 longer path니까 이겨서 여기에는 read only가 적용되지 않기 때문
+- `-v /app/temp` : 익명 볼륨 추가
+  - 컨테이너가 임시 데이터를 host file system에 저장
+  - 더 효율적으로 작업 가능
+  - Dockerfile에서 `VOLUME ["/temp"]` 코드는 삭제
+
+---
+
+### Docker volume 관리하기
+- `docker volume --help`
+- 전체
+  - `docker volume ls`
+    - 결과 : 익명볼륨 2개, named volume 1개 있음
+    - bind mount는 표시X (host machine이 관리하고 Docker가 관리하는 것 아니기 때문)
+- 생성
+  - `docker volume create --help` : volume 생성
+  - `docker volume create feedback-files` - `docker volume ls`
+- 상세
+  - `docker volume inspect feedback`
+    - host machine이 volume을 자동으로 생성하는 경로 알 수 있음
+- 삭제
+  - `docker volume rm feedback-files`
+    - 사용 중이면 삭제 불가 : `docker stop feedback-app` - `docker volume rm feedback`
+    - 컨테이너 `stop` 하는 순간 모든 익명 볼륨도 동시에 삭제됨
+  - `docker volume prune` : 모두 삭제
+
+
