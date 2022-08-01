@@ -202,5 +202,80 @@ docker run -d --rm  -p 3000:80 --name feedback-app -v feedback:/app/feedback -v 
 - 이 두 가지는 익명볼륨을 추가한 경우에만 작동
   - 'bind mount' 폴더가 'node_modules' 폴더를 덮어쓰지 않기 때문에 가능 
 
+---
 
+### js 파일 수정사항이 온라인에도 바로 반영되도록 하기
+- server.js 파일이 수정되어도 rebuild 등 할 필요없음
+
+<b>기존 방법</b>
+- rebuild 할 필요는 없지만 여전히 `stop`, `start`, `run` 해야 하고 불편
+```
+docker stop feedback-app
+docker start feedback-app
+
+docker run -d --rm  -p 3000:80 --name feedback-app -v feedback:/app/feedback -v "/Users/reasonmii/udemy_docker/data-volumes-01-starting-setup:/app" -v /app/node_modules  feedback-node:volumes
+
+docker logs feedback-app
+```
+
+<b>해결</b>
+- extra package 'nodemon' 사용하기
+  - 'package.json' 파일에서 `scripts`, `devDependencies` 코드 추가
+  - `node` 대신 `nodemon`으로 js 파일 실행하는 것
+  - nodemon : file system을 감시하다가 source 파일에 변경이 있을 때마다 자동으로 노드 서버 재시작
+```
+{
+  "name": "data-volume-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "author": "Maximilian Schwarzmüller / Academind GmbH",
+  "license": "ISC",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.4"
+  }
+}
+```
+
+- 'Dockerfile' `CMD` 부분도 수정
+  - 내부적으로 nodemon을 사용하도록 
+```
+FROM node:14
+
+WORKDIR /app
+
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 80
+
+# VOLUME ["/app/node_modules"]
+
+CMD ["npm", "start"]
+```
+
+- Terminal
+
+```
+docker rmi feedback-node:volumes
+docker stop feedback-app
+docker build -t feedback-node:volumes .
+
+docker run -d --rm  -p 3000:80 --name feedback-app -v feedback:/app/feedback -v "/Users/reasonmii/udemy_docker/data-volumes-01-starting-setup:/app" -v /app/node_modules  feedback-node:volumes
+```
+
+- 'server.js' : `await fs.writeFile(tempFilePath, content);` 코드 위에 `console.log('TEST!!!!');` 추가 - 
+- 인터넷 주소창 : http://localhost:3000/ - 아무거나 입력
+- `docker logs feedback-app`
+  - 결과 : TEST!!!! 출력됨
 
