@@ -276,6 +276,5 @@ docker run -d --rm  -p 3000:80 --name feedback-app -v feedback:/app/feedback -v 
 
 - 'server.js' : `await fs.writeFile(tempFilePath, content);` 코드 위에 `console.log('TEST!!!!');` 추가 - 
 - 인터넷 주소창 : http://localhost:3000/ - 아무거나 입력
-- `docker logs feedback-app`
-  - 결과 : TEST!!!! 출력됨
+- Terminal `docker logs feedback-app` 결과 : TEST!!!! 출력됨
 
