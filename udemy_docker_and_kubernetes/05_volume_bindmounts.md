@@ -1,6 +1,6 @@
 사용파일 : data-volumnes-01-starting-setup
 
-### volume & bind mounts 구분
+### volume & bind mounts
 
 <b>anonymous volume</b>
 - Dockerfile `VOLUME` 코드로 생성하거나 `-v`로 생성
