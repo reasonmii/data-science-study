@@ -1,37 +1,5 @@
 사용파일 : data-volumnes-01-starting-setup
 
-### volume & bind mounts
-
-<b>anonymous volume</b>
-- Dockerfile `VOLUME` 코드로 생성하거나 `-v`로 생성
-  - `VOLUME ["/app/node_modules"]`
-  - `-v /app/node_modules`
-    - `-v /app/data ...`
-- created specifically for a single container
-- survives container shutdown/restart unless `--rm` is used
-- container 간 공유 불가, 재사용 불가
-- 컨테어너에 이미 존재하는 특정 데이터를 잠그는데 유용
-- 데이터가 다른 모듈로 덮어쓰기되는 것 방지
-
-<b>named volume</b>
-- `-v [volume name]:/app/node_modules`
-- Dockerfile에서 생성 불가, `-v`로 생성
-- created in general (특정 container X)
-- survives container shutdown/restart
-  - 삭제 : Docker CLI 사용
-- container 간 공유 가능
-- restart를 통해 같은 컨테이너에서 재사용 가능
-
-<b>bind mounts</b>
-- `-v "[PATH]:/app"
-- Location on host file system, not tied to any specific container
-- survives container shutdown/restart
-  - host machine에서 삭제
-- container 간 공유 가능
-- restart를 통해 같은 컨테이너에서 재사용 가능
-
----
-
 <b>Dockerfile 생성</b>
 ```
 FROM node:14
