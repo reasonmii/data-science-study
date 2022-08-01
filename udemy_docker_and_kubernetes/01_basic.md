@@ -58,7 +58,9 @@
 
 <b>volumes</b>
 - container와는 별개로 host machine hard drive에 있는 것
+  - Docker에서 관리하므로 호스트 폴더(컨테이너 내부 경로 매핑)가 어디 있는지 반드시 알 
 - container가 shutdown 되어도 살아 있음
   - If a container (re-)start and mounts a volume, any data inside of that volume is available in the container
 - container에 mount 해서 사용
 - container는 volume data 읽기/쓰기 가능
+
