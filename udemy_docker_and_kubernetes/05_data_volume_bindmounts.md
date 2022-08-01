@@ -1,5 +1,31 @@
 사용파일 : data-volumnes-01-starting-setup
 
+### volume & bind mounts 구분
+
+<b>anonymous volume
+- Dockerfile `VOLUME` 코드로 생성하거나 `-v`로 생성
+  - `VOLUME ["/app/node_modules"]`
+  - `-v /app/node_modules`
+    - `-v /app/data ...`
+- created specifically for a single container
+- survives container shutdown/restart unless `--rm` is used
+- container 간 공유 불가, 재사용 불가
+- 컨테어너에 이미 존재하는 특정 데이터를 잠그는데 유용
+- 데이터가 다른 모듈로 덮어쓰기되는 것 방지
+
+<b>named volume</b>
+- `-v [volume name]:/app/node_modules`
+- Dockerfile에서 생성 불가, `-v`로 생성
+- created in general (특정 container X)
+- survives container shutdown/restart - removal via Docker CLI
+- container 간 
+- restart를 통해 같은 
+
+<b>bind mounts</b>
+- `-v "[PATH]:/app"
+
+---
+
 <b>Dockerfile 생성</b>
 ```
 FROM node:14
@@ -145,12 +171,17 @@ CMD ["node", "server.js"]
 
 ---
 
-### Bind Mounts
+### Anonymous volume 활용하기
 
-<b>volume & bind mounts 구분하기</b>
-- anonymous volume : `-v /app/node_modules`
-- named volume : `-v [volume name]:/app/node_modules`
-- bind mounts : `-v "[PATH]:/app"
+<b>Dockerfile</b>
+-`CMD` 코드 위에 `VOLUME ["/temp"]` 코드 추가
+  - temp 폴더를 익명 볼륨에 mapping 하는 것
+  - docker container에서 데이터를 관리하지 않고 host file system에 data outsourcing
+  - container 자체에서 관리하지 않기 때문에 성능 향상
+
+---
+
+### Bind Mounts
 
 <b>방법1 : 실패</b>
 - volume 실행 코드에 `-v "[absolute project folder path]:/app"` 부분만 추가
