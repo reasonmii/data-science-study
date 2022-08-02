@@ -95,3 +95,15 @@
 - container 간 공유 가능
 - restart를 통해 같은 컨테이너에서 재사용 가능
 
+<b>ARGuments</b>
+- Docker supports build-time ARGuments
+- Available inside of Dockerfile, NOT accessible in CMD or any application code
+- Set on image build (`docker build`) via `--build-arg`
+
+<b>ENVironment</b>
+- Docker supports runtime ENVironment variables
+- Available inside of Dockerfile & in application code
+- Set via ENV in Dockerfile or via `--env` on `docker run`
+
+
+
