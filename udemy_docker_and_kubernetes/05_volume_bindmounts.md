@@ -207,6 +207,12 @@ docker run -d --rm  -p 3000:80 --name feedback-app -v feedback:/app/feedback -v 
 - 이 두 가지는 익명볼륨을 추가한 경우에만 작동
   - 'bind mount' 폴더가 'node_modules' 폴더를 덮어쓰지 않기 때문에 가능 
 
+<b>주의점</b>
+- bind mounts `run` 코드를 사용하면 Dockerfile에서 `COPY . .` 코드 부분을 지워도 됨
+- but, 컨테이너가 일단 빌드되면 온라인에서 데이터 추가/수정 후에는 bind mounts가 아닌 다른 volume 사용하게 됨
+- 이떄 `COPY . .` 부분이 없으면 connection이 끊어지게 됨
+- = Dockerfile에 `COPY . .` 코드 필요
+
 ---
 
 ### js 파일 수정사항이 온라인에도 바로 반영되도록 하기
@@ -320,5 +326,19 @@ docker run -d --rm  -p 3000:80 --name feedback-app -v feedback:/app/feedback -v 
     - 사용 중이면 삭제 불가 : `docker stop feedback-app` - `docker volume rm feedback`
     - 컨테이너 `stop` 하는 순간 모든 익명 볼륨도 동시에 삭제됨
   - `docker volume prune` : 모두 삭제
+
+---
+
+### .dockerignore file
+- '.dockerignore' file 추가
+- Dockerfile `COPY . .` 코드에서 복사하지 않고 무시할 폴더/파일 지정
+
+```
+node_modules
+```
+
+- `node_modules` 입력
+  - 이걸 쓰면 'Dockerfile'의 `RUN npm install` 대신 local에 있는 npm install 사용하게 됨
+  - maybe outdated or `COPY . .` 시간 더 오래걸리게 함
 
 
