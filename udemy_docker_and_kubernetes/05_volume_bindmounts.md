@@ -337,7 +337,7 @@ docker run -d --rm  -p 3000:80 --name feedback-app -v feedback:/app/feedback -v 
 node_modules
 ```
 
-- `node_modules` 입력
+- `node_modules` 폴더
   - 이걸 쓰면 'Dockerfile'의 `RUN npm install` 대신 local에 있는 npm install 사용하게 됨
   - maybe outdated or `COPY . .` 시간 더 오래걸리게 함
 
