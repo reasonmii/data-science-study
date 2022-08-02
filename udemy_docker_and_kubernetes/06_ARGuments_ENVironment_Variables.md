@@ -1,8 +1,8 @@
 <b>ENVironment variables 지정하기</b>
-- 1) `run` command에서 직접 작성
+1) `run` command에서 직접 작성
   - `--env [변수]=[값]`, `-e [변수]=[값]`
   - 환경변수가 여러 개인 경우 : `-e [변수]=[값] -e [변수]=[값]` 이런 식으로 계속 이어 쓰면 됨
-- 2) '.env' 파일 만들어서 작성
+2) '.env' 파일 만들어서 작성
   - 내용 입력 : `PORT=8000`
   - `run` command : `--env PORT=8000` 대신 `--env-file ./.env` 작성
 
