@@ -1,6 +1,17 @@
 ### code list
 - `docker --help`
 
+<b>핵심</b>
+- DVA 과제
+- `docker container ls` : show all running containers
+- `docker container ls -a` : show all containers (started and stopped)
+- `docker container rm -f <container>` : force kill and remove a container (useful when you make a mistake and need to start a new one)
+- `docker image ls` : show all images
+- `docker container exec -it <container> /bin/bash` : attach to a running container (type exit to detach from the container)
+- `docker container start <container>` : start a stopped container
+
+---
+
 <b>보기</b>
 - `docker ps` : 실행 중인 모든 container
 - `docker ps -a` : all containers from past
