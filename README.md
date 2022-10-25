@@ -62,7 +62,6 @@
 ---
 <b>NLP</b>
 - [KoNLPy](https://cceeddcc.tistory.com/8) : 한국어 정보처리를 위한 파이썬 패키지
-- [LSTM](https://bangseogs.tistory.com/96)
 
 ---
 <b>[wandB](https://wandb.ai/site)</b>
