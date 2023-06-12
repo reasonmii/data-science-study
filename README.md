@@ -1,5 +1,6 @@
 [Google Colab](https://colab.research.google.com/notebooks/welcome.ipynb?hl=ko)
 
+- 모델링에서 가장 중요한 하이퍼파라미터 : Learning rate, scheduler
 
 ---
 <b>data</b>
